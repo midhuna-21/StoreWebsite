@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Shoping Cart</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+	<link href="uiHome/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link href="uiHome/css/tiny-slider.css" rel="stylesheet">
+	<link href="uiHome/css/style.css" rel="stylesheet">
+</head>
+<style>
+	.coupon-container {
+		display: none;
+		/* Hidden by default */
+	}
+
+	.row1 {
+		display: -ms-flexbox;
+		/* IE10 */
+		display: flex;
+		-ms-flex-wrap: wrap;
+		/* IE10 */
+		flex-wrap: wrap;
+		margin: 0 -16px;
+	}
+
+	.col-25 {
+		-ms-flex: 25%;
+		/* IE10 */
+		flex: 25%;
+	}
+
+	.col-50 {
+		-ms-flex: 50%;
+		/* IE10 */
+		flex: 50%;
+	}
+
+	.col-75 {
+		-ms-flex: 75%;
+		/* IE10 */
+		flex: 75%;
+	}
+
+	.col-25,
+	.col-50,
+	.col-75 {
+		padding: 0 16px;
+	}
+
+	.container1 {
+		background-color: #f2f2f2;
+		padding: 5px 20px 15px 20px;
+		border: 1px solid lightgrey;
+		border-radius: 3px;
+	}
+
+	input[type=text] {
+		width: 100%;
+		margin-bottom: 20px;
+		padding: 12px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+	}
+
+	label {
+		margin-bottom: 10px;
+		display: block;
+	}
+
+	.icon-container {
+		margin-bottom: 20px;
+		padding: 7px 0;
+		font-size: 24px;
+	}
+
+	.btn1,
+	.btncoupon,
+	.btnorder {
+		background-color: #04AA6D;
+		color: white;
+		padding: 12px;
+		margin: 10px 0;
+		border: none;
+		width: 100%;
+		border-radius: 3px;
+		cursor: pointer;
+		font-size: 17px;
+	}
+
+	.btn1:hover {
+		background-color: #45a049;
+	}
+
+	span.price,
+	span.code,
+	span.discountAmount {
+		float: right;
+		color: grey;
+	}
+
+	/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+	@media (max-width: 800px) {
+		.row1 {
+			flex-direction: column-reverse;
+		}
+
+		.col-25 {
+			margin-bottom: 20px;
+		}
+	}
+
+	.footer-divider {
+		width: 85%;
+		/* Increase the width to 95% */
+		height: 0.5px;
+		background-color: #c6bdbd;
+		margin: 20px auto;
+		/* Center the divider horizontally */
+		margin-top: 125px;
+	}
+	.btn-pagination {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #01060b;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.btn-pagination.current-page {
+  background-color: #ccc;
+  color: #333;
+}
+
+</style>
+
+<body>
+	<!-- Start Header/Navigation -->
+	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">Halang<span>.</span></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+				aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarsFurni">
+				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+					<li><a class="nav-link" href="/">Home</a></li>
+					<li><a class="nav-link" href="/products">Shop</a></li>
+					<li><a class="nav-link" href="about.html">About us</a></li>
+					<li><a class="nav-link" href="services.html">Services</a></li>
+					<li><a class="nav-link" href="blog.html">Contact us</a></li>
+
+				</ul>
+				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+					<li><a class="nav-link" href="/profile"><img src="uiHome/images/user.svg"></a></li>
+					<li><a class="nav-link" href="/cart"><img src="uiHome/images/cart.svg"></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+
+
+	<!-- views/wallethistory.ejs -->
+
+	<div class="container">
+		<div class="text-center header" style="padding: 37px;">
+			<h3>Wallet History</h3>
+			<h5>
+				 Balance:<%= wallet?.balance %>
+			</h5>
+		</div>
+		<% if (!wallet?.transactions?.length) { %>
+			<p>Your wallet is empty. No transactions to display.</p>
+			<% } else { %>
+				<div class="transaction-item">
+					<div class="border border-2 p-3 mb-3">
+						<table class="table table-striped table-bordered table-hover">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">Sl No</th>
+									<th scope="col">Date</th>
+									<th scope="col">Transaction Type</th>
+									<th scope="col">Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% wallet.transactions.forEach(function(transaction, index) { %>
+								<tr>
+									<th scope="row"><%= index + 1 %></th>
+									<td><%= transaction.date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+									<td><%= transaction.type %></td>
+									<td>
+										<% if (transaction.amount > 0) { %>
+											<span class="text-success"><%= transaction.amount %></span>
+										<% } else if (transaction.amount < 0) { %>
+											<span class="text-danger"><%= transaction.amount %></span>
+										<% } else { %>
+											<%= transaction.amount %>
+										<% } %>
+									</td>
+								</tr>
+								<% }); %>
+							</tbody>
+						</table>
+						<% } %>
+					</div>
+				</div>
+
+				<!-- Pagination controls -->
+				<div class="pagination">
+					<% for (let i = 1; i <= totalPages; i++) { %>
+					  <a href="?page=<%= i %>" class="btn-pagination<%= i === currentPage ? ' current-page' : '' %>"><%= i %></a>
+					<% } %>
+				  </div>
+				  
+
+
+
+
+	<%- include('../layouts/footer.ejs') %>

@@ -1,0 +1,243 @@
+<%- include('../layouts/slidebar.ejs') %>
+    <section class="content-main">
+        <div class="row">
+            <div class="col-9">
+                <div class="content-header">
+                    <form action="/admin/edit-product/<%= product._id %>" method="post" enctype="multipart/form-data"
+                        id="product-form" onsubmit="return validateForm(event)">
+
+
+                        <h2 class="content-title">Edit Product</h2>
+                        <div>
+                            <!-- <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button> -->
+                            <!-- <button  class="btn btn-md rounded font-sm hover-up" type="submit" >Publish</button> -->
+                        </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Basic</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="product_name" class="form-label">Product Name</label>
+                            <input type="text" name="productname" value="<%= product.productname %>"
+                                class="form-control" id="product_name">
+                            <p class="error-message" id="productnameError" style="color:red"></p>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Description</label>
+                            <textarea name="description" class="form-control"
+                                rows="4"><%= product.description %></textarea>
+                            <p class="error-message" id="descriptionError" style="color:red"></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label class="form-label">Regular price</label>
+                                    <div>
+                                        <input placeholder="₹" name="productprice" type="number"
+                                            value="<%= product.productprice %>" class="form-control">
+                                        <p class="error-message" id="salesPriceError" style="color:red"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4">
+                                    <label class="form-label">Promotional price</label>
+                                    <input placeholder="₹" name="salesprice" value="<%= product.salesprice %>"
+                                        type="number" class="form-control">
+                                    <p class="error-message" id="promotionalPriceError" style="color:red"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- card end// -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Quantity</label>
+                                    <input type="number" name="quantity" value="<%= product.quantity %>"
+                                        class="form-control" id="product_name">
+                                    <p id="quantityError" class="error-message" style="color:red"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Color</label>
+                                    <input type="text" name="color" class="form-control" value="<%= product.color %>"
+                                        id="product_name">
+                                    <p id="colorError" class="error-message" style="color:red"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                        </div>
+                    </div>
+                </div> <!-- card end// -->
+            </div>
+            <div class="col-lg-3">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Product Image</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-upload">
+                            <% product.image.forEach(images=> { %>
+                                <img class="w-100" src="/uploadProduct/<%= images %>"> </a>
+                                <% }); %>
+                                    <input type="file" name="file" class="form-control" id="product_image"
+                                        accept="image/*" multiple />
+                                    <p id="imageError" class="error-message" style="color:red"></p>
+                        </div>
+                    </div>
+                </div> <!-- card end// -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Organization</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row gx-2">
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label">Category</label>
+                                <select name="categoryname" class="form-control" value="<%= product.categoryname %>"
+                                    id="product_name">
+                                    <!-- <option value="" selected disabled>Select a category</option> -->
+                                    <% categories.forEach(category=> { %>
+                                        <option value="<%= category.categoryname %>">
+                                            <%= category.categoryname %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                                <p id="categorynameError" class="error-message" style="color:red"></p>
+                            </div>
+                            <button class="btn btn-md rounded font-sm hover-up" type="submit">Publish</button>
+                        </div> <!-- row.// -->
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+    </section> <!-- content-main end// -->
+    </main>
+    <script>
+        function validateForm(event) {
+
+            const form = document.getElementById('product-form');
+            const productNameInput = document.getElementById('product_name');
+            const descriptionInput = document.querySelector('textarea[name="description"]');
+            const productPriceInput = document.querySelector('input[name="productprice"]');
+            const salesPriceInput = document.querySelector('input[name="salesprice"]');
+            const quantityInput = document.querySelector('input[name="quantity"]');
+            const colorInput = document.querySelector('input[name="color"]');
+            const imageInput = document.querySelector('input[name="file"]');
+            const categoryInput = document.querySelector('select[name="categoryname"]');
+
+            const productNameError = document.getElementById('productnameError');
+            const descriptionError = document.getElementById('descriptionError');
+            const promotionalPriceError = document.getElementById('promotionalPriceError');
+            const salesPriceError = document.getElementById('salesPriceError');
+            const quantityError = document.getElementById('quantityError');
+            const colorError = document.getElementById('colorError');
+            const imageError = document.getElementById('imageError');
+            const categorynameError = document.getElementById('categorynameError');
+
+            productNameError.textContent = '';
+            descriptionError.textContent = '';
+            promotionalPriceError.textContent = '';
+            salesPriceError.textContent = '';
+            quantityError.textContent = '';
+            colorError.textContent = '';
+            imageError.textContent = '';
+            categorynameError.textContent = '';
+
+
+            const maxNameLength = 60;
+            let isValid = true;
+
+            if (productNameInput.value.trim() === '') {
+                productNameError.textContent = 'Product name is required.';
+                isValid = false;
+            }
+            else if (productNameInput.value.length > maxNameLength) {
+
+                productNameError.textContent = 'Product name exceeds the maximum limit.';
+                isValid = false;
+            } else if (!productNameInput.value.match(/^[a-z ,.'-]+$/i)) {
+                productNameError.textContent = 'Product name should not include special characters'
+                isValid = false;
+            }
+            const maxDescriptionLength = 200;
+            if (descriptionInput.value.trim() === '') {
+                descriptionError.textContent = 'Description is required.';
+                isValid = false;
+            }
+            else if (descriptionInput.value.length > maxDescriptionLength) {
+                descriptionError.textContent = 'Description exceeds the maximum limit.'
+                isValid = false;
+            } else if (!descriptionInput.value.match(/^[a-z ,.'-]+$/i)) {
+                descriptionError.textContent = 'Description should not include special characters'
+                isValid = false;
+            }
+
+            if (productPriceInput.value.trim() === '') {
+                salesPriceError.textContent = 'Regular price is required.';
+                isValid = false;
+            }
+            else if ((productPriceInput.value !== '') && parseFloat(salesPriceInput.value) <= 0) {
+                salesPriceError.textContent = 'Regular price must be greater than zero.';
+                isValid = false;
+            } 
+
+            if (salesPriceInput.value.trim() === '') {
+                promotionalPriceError.textContent = 'promotional price is required.';
+                isValid = false;
+            }
+            else if (isNaN(salesPriceInput.value) || parseFloat(productPriceInput.value) <= 0) {
+                promotionalPriceError.textContent = 'Promotional price must be a greater than zero.';
+                isValid = false;
+            }
+
+
+            if (quantityInput.value.trim() === '') {
+                quantityError.textContent = 'Quantity is required.';
+                isValid = false;
+            }
+            else if (parseFloat(quantityInput.value) <= 0) {
+                quantityError.textContent = 'Quantity must be greater than zero.';
+                isValid = false;
+            }
+
+            if (colorInput.value.trim() === '') {
+                colorError.textContent = 'Color is required.';
+                isValid = false;
+            }
+            else if (!colorInput.value.match(/^[a-z ,.'-]+$/i)) {
+                colorError.textContent = 'color should not include special characters'
+                isValid = false;
+            }
+
+
+
+            if (categoryInput.value === '') {
+                categorynameError.textContent = 'Category is required.';
+                isValid = false;
+            }
+            if (!isValid) {
+                return false;
+            }
+            return isValid;
+        }
+
+
+
+
+    </script>
+    <%- include('../layouts/slidefooter.ejs') %>
