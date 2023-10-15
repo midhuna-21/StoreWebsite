@@ -53,10 +53,7 @@ admin_router.post('/editcoupon/:id',auth.isAdminAuthorized,couponController.edit
 admin_router.post('/unListCoupon', couponController.unListCoupon);
 admin_router.post('/listCoupon', couponController.listCoupon);
 
-
 admin_router.post('/status/:orderId/',auth.isAdminAuthorized,orderController.updateStatus)
-
-
 
 admin_router.get('/dashboard',auth.isAdminAuthorized,orderController.getDashboard)
 admin_router.get('/salesreport',auth.isAdminAuthorized,salesReportController.salesReport)

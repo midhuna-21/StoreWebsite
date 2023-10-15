@@ -78,12 +78,10 @@ const blockUnblock = async (req, res) => {
     }
 };
 
-
-
-
 // logout
 const adminLogout = async(req, res)=>{
     try{
+        req.session.destroy()
         res.redirect('/admin/login')
     }catch(error){
         res.render('/error')

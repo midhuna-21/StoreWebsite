@@ -296,10 +296,11 @@ const otp = async (req, res) => {
         console.log(error.message);
     }
 };
+
 // home page
 const loadHome = async (req, res) => {
     try {
-        console.log('fjjsd')
+      
         const userId = req.session.user_id;
         const products = await Product.find().sort({ createdAt: -1 }).limit(8);        ;
         const categories = await Category.find();
@@ -333,7 +334,7 @@ const userLogout = async (req, res) => {
         req.session.destroy();
         userLoggedIn = false;
         res.redirect("/");
-        console.log("hdhs");
+        
     } catch (error) {
         console.log(error.message);
     }

@@ -86,6 +86,7 @@ const cancelOrder = async (req, res) => {
           const canceledAmount = order.totalprice;
           const userId = order.user;
           const transactionType = 'credit';
+          console.log('ssn')
           await walletHelper.updateWalletBalance(userId, canceledAmount, transactionType);
       }
 

@@ -108,17 +108,17 @@
 
 	}
 	.footer-divider {
-    width: 85%; /* Increase the width to 95% */
+    width: 100%; /* Increase the width to 95% */
     height: 0.5px;
     background-color: #c6bdbd;
     margin: 20px auto; /* Center the divider horizontally */
-	margin-top: 175px;
+	margin-top: 50px;
 }
 </style>
 
 <body>
 	<!-- Start Header/Navigation -->
-	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar" >
+	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar"  >
 		<div class="container">
 			<a class="navbar-brand" href="index.html">Halang<span>.</span></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
@@ -149,7 +149,7 @@
 
 	<!-- Coupons -->
 	<% coupons.forEach(function(coupon) { %>
-		<div class="coup" style="padding-left: 70px; padding-top: 50px;">
+		<div class="coup" style="padding-left: 70px; padding-top: 50px; padding-bottom: 80px;">
 		<div class="coupon-card" >
 			<h3>
 				<%= coupon.description %>

@@ -199,7 +199,8 @@
 		<div class="text-center header" style="padding: 37px;">
 			<h3>Wallet History</h3>
 			<h5>
-				 Balance:<%= wallet?.balance %>
+				Balance: <%= Math.round(wallet?.balance) %>
+
 			</h5>
 		</div>
 		<% if (!wallet?.transactions?.length) { %>
