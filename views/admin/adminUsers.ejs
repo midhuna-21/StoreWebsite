@@ -1,62 +1,64 @@
 <%- include('../layouts/slidebar.ejs') %>
-    <section class="content-main" style="background-color: #f8f8f8; width: 1200px;">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>User name</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th>Phone Number</th>
-                            <th class="text-end"> Action </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% users.forEach(user=>{ %>
+    <main class="main-wrap">
+        <section class="content-main">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <td width="40%">
-                                    <a href="#" class="itemside">
-
-                                        <div class="info pl-3">
-                                            <h6 class="mb-0 title">
-                                                <%= user.name %>
-                                            </h6>
-                                            <small class="text-muted">
-                                                <%= user._id %>
-                                            </small>
-
-                                        </div>
-                                    </a>
-                                </td>
-                                <td>
-                                    <%= user.email %>
-                                </td>
-                                <td>
-                                    <% if (user.isActive===true) { %>
-                                        <span class="badge rounded-pill alert-success">Active</span>
-                                        <% }else{ %>
-                                            <span class="badge rounded-pill alert-danger">Inactive</span>
-                                            <% } %>
-                                </td>
-                                <td>
-                                    <%= user.tel %>
-                                </td>
-                                <td class="text-end">
-
-                                    <% if (user.isActive) { %>
-                                        <a href="/admin/block-unblock/<%= user._id %>"
-                                            class="btn btn-sm btn-success rounded font-sm mt-15">Block</a>
-                                        <% } else { %>
-                                            <a href="/admin/block-unblock/<%= user._id %>"
-                                                class="btn btn-sm btn-danger rounded font-sm mt-15">Unblock</a>
-                                            <% } %>
-                                </td>
+                                <th>User name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Phone Number</th>
+                                <th class="text-end"> Action </th>
                             </tr>
-                            <% }); %>
-                    </tbody>
-                </table> <!-- table-responsive.// -->
-            </div>
-        </div> <!-- card-body end// -->
-    </section> <!-- content-main end// -->
-<%- include('../layouts/slidefooter.ejs') %>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user=>{ %>
+                                <tr>
+                                    <td width="40%">
+                                        <a href="#" class="itemside">
+
+                                            <div class="info pl-3">
+                                                <h6 class="mb-0 title">
+                                                    <%= user.name %>
+                                                </h6>
+                                                <small class="text-muted">
+                                                    <%= user._id %>
+                                                </small>
+
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= user.email %>
+                                    </td>
+                                    <td>
+                                        <% if (user.isActive===true) { %>
+                                            <span class="badge rounded-pill alert-success">Active</span>
+                                            <% }else{ %>
+                                                <span class="badge rounded-pill alert-danger">Inactive</span>
+                                                <% } %>
+                                    </td>
+                                    <td>
+                                        <%= user.tel %>
+                                    </td>
+                                    <td class="text-end">
+
+                                        <% if (user.isActive) { %>
+                                            <a href="/admin/block-unblock/<%= user._id %>"
+                                                class="btn btn-sm btn-success rounded font-sm mt-15">Block</a>
+                                            <% } else { %>
+                                                <a href="/admin/block-unblock/<%= user._id %>"
+                                                    class="btn btn-sm btn-danger rounded font-sm mt-15">Unblock</a>
+                                                <% } %>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table> <!-- table-responsive.// -->
+                </div>
+            </div> <!-- card-body end// -->
+        </section> <!-- content-main end// -->
+    </main>
+    <%- include('../layouts/slidefooter.ejs') %>

@@ -57,12 +57,12 @@ const shopCart = async (req, res) => {
 const addToCart = async (req, res) => {
 
     try {
-       
+
         const userId = req.session.user_id;
         const { productId, quantity } = req.body;
-      
+
         if (!req.session.user_id) {
-          return  res.json({user:false})
+            return res.json({ user: false })
         } else {
             const product = await Product.findById(productId);
             console.log(product)
@@ -149,7 +149,7 @@ const checkout = async (req, res) => {
                 discountAmount = (calculateTotalPrice * selectedCoupon.discount) / 100;
                 if (discountAmount > selectedCoupon.maxAmount) {
                     discountAmount = selectedCoupon.maxAmount
-                
+
                 }
                 coupon = selectedCoupon;
 
@@ -361,12 +361,12 @@ const placeOrder = async (req, res) => {
                 });
                 req.session.newOrder = newOrder;
                 const savedOrder = req.session.newOrder
-                console.log('orders before saving',savedOrder)
+                console.log('orders before saving', savedOrder)
                 const generateOrder = await generateOrderRazorpay(
                     savedOrder._id,
                     calculateTotalPrice
                 );
-                
+
                 res.json({ generateOrder, method: 'online' });
             }
         } else {
@@ -397,14 +397,14 @@ const generateOrderRazorpay = (orderId, total) => {
             }
         });
     })
-    
+
 }
 
 const verifyOrderPayment = (details) => {
     console.log("DETAILS : " + JSON.stringify(details));
     return new Promise((resolve, reject) => {
         const crypto = require('crypto');
-        
+
         let hmac = crypto.createHmac('sha256', 'dl0Hy9nM5tIuqoqfIsNvWwas')
         hmac.update(
             String(details['order[generateOrder][id]']) + '|' +
@@ -440,7 +440,7 @@ const verifyRazorpayPayment = async (req, res) => {
                 console.log("Payment SUCCESSFUL");
                 const orders = req.session.newOrder
                 const saveOrder = new Order(orders)
-                console.log('orderee',saveOrder)
+                console.log('orderee', saveOrder)
                 await saveOrder.save()
 
                 cart.products = [];

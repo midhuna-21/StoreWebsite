@@ -5,19 +5,19 @@ const multer = require('multer');
 const cropImage = require('../multer/productImgCrop')
 
 // addproduct page
-const addProductPage = async(req, res)=>{
-    try{
-        const categories = await  Category.find().lean()
-        res.render('admin/adminProduct',{categories})
-    }catch(error){
+const addProductPage = async (req, res) => {
+    try {
+        const categories = await Category.find().lean()
+        res.render('admin/adminProduct', { categories })
+    } catch (error) {
         console.log(error.message)
     }
 }
 // add product
-const addProduct = async(req, res)=>{
-    try{
+const addProduct = async (req, res) => {
+    try {
         const { productname, categoryname, description, quantity, color, productprice, salesprice } = req.body;
-        await cropImage.crop(req); 
+        await cropImage.crop(req);
         const images = req.files.map(file => file.filename);
         const productadd = new Product({
             productname,
@@ -29,11 +29,11 @@ const addProduct = async(req, res)=>{
             salesprice,
             image: images,
             isListed: true
-            
+
         });
         await productadd.save();
         res.redirect('/admin/products')
-    }catch(error){
+    } catch (error) {
         console.log(error.message);
     }
 }
@@ -41,8 +41,8 @@ const addProduct = async(req, res)=>{
 
 const product = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1; 
-        const pageSize = 5; 
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = 5;
 
         const totalProducts = await Product.countDocuments();
 
@@ -50,15 +50,15 @@ const product = async (req, res) => {
         const skip = (page - 1) * pageSize;
 
         const products = await Product.find()
-        .sort({ date: -1 })
-            .skip(skip) 
-            .limit(pageSize); 
+            .sort({ date: -1 })
+            .skip(skip)
+            .limit(pageSize);
 
         res.render('admin/products', {
             products,
             currentPage: page,
             totalPages,
-            sort: '-date', 
+            sort: '-date',
         });
     } catch (error) {
         console.log(error.message);
@@ -67,13 +67,13 @@ const product = async (req, res) => {
 
 
 // edit the product page
-const editProductPage = async(req, res)=>{
-    try{
+const editProductPage = async (req, res) => {
+    try {
         const productId = req.params.productId;
         const product = await Product.findById(productId).lean();
         const categories = await Category.find().lean()
-        res.render('admin/editProduct',{product ,categories})
-    }catch(error){
+        res.render('admin/editProduct', { product, categories })
+    } catch (error) {
         console.log(error.message)
     }
 }
@@ -83,17 +83,17 @@ const editProduct = async (req, res) => {
         const productId = req.params.productId; // Extract product ID from URL parameter
         const validProductId = new mongoose.Types.ObjectId(productId);
         const updatedProductData = {
-            productname:req.body.productname,
-            categoryname:req.body.categoryname,
-            description:req.body.description,
-            quantity:req.body.quantity,
-            color:req.body.color,
-            productprice:req.body.productprice,
-            salesprice:req.body.salesprice,
+            productname: req.body.productname,
+            categoryname: req.body.categoryname,
+            description: req.body.description,
+            quantity: req.body.quantity,
+            color: req.body.color,
+            productprice: req.body.productprice,
+            salesprice: req.body.salesprice,
             isListed: true
-            
+
         };
-   
+
         if (req.files && req.files.length > 0) {
             await cropImage.crop(req);
             const newImages = req.files.map(file => file.filename);
@@ -107,7 +107,7 @@ const editProduct = async (req, res) => {
             console.log('Product updated successfully');
             const categories = await Category.find().lean()
             res.redirect('/admin/products')
-        
+
         }
     } catch (error) {
         console.log(error.message);
@@ -115,11 +115,11 @@ const editProduct = async (req, res) => {
 };
 const listProduct = async (req, res) => {
     try {
-      
+
         const productId = req.params.productId;
         const validProductId = new mongoose.Types.ObjectId(productId);
         const product = await Product.findByIdAndUpdate(validProductId, { isListed: true });
-        console.log('product update',product)
+        console.log('product update', product)
         if (!product) {
             return res.status(404).send('Product not found');
         }
@@ -132,12 +132,12 @@ const listProduct = async (req, res) => {
 
 const unListProduct = async (req, res) => {
     try {
-       
+
         const productId = req.params.productId;
-        console.log('productId',productId)
+        console.log('productId', productId)
         const validProductId = new mongoose.Types.ObjectId(productId);
         const product = await Product.findByIdAndUpdate(validProductId, { isListed: false });
-        console.log('product update',product)
+        console.log('product update', product)
         if (!product) {
             return res.status(404).send('Product not found');
         }
@@ -179,7 +179,7 @@ const renderProductsPage = async (req, res, queryConditions) => {
         ]);
 
         const categoryname = req.query.categoryname || 'all';
-        
+
         let totalProductsCount;
         let products;
 
@@ -217,13 +217,13 @@ const renderProductsPage = async (req, res, queryConditions) => {
 
 // allProducts route handler
 const allProducts = async (req, res) => {
-  
+
     try {
-        const listedCatgories = await Category.find({ isListed: true}).lean();
+        const listedCatgories = await Category.find({ isListed: true }).lean();
         const listedCategoryNames = listedCatgories.map((category) => category.categoryname);
         const queryConditions = {
             isListed: true,
-            categoryname: {$in: listedCategoryNames},
+            categoryname: { $in: listedCategoryNames },
         }
         await renderProductsPage(req, res, queryConditions);
     } catch (error) {
@@ -247,25 +247,25 @@ const searchProducts = async (req, res) => {
 };
 
 // product Details
-const productDetails = async(req, res)=>{
-    try{
-        const products = await Product.find({_id: req.query.productid})
-        res.render('users/productdetail',{products})
-    }catch(error){
+const productDetails = async (req, res) => {
+    try {
+        const products = await Product.find({ _id: req.query.productid })
+        res.render('users/productdetail', { products })
+    } catch (error) {
         console.log(error.message);
     }
 }
 
-const products = async(req, res)=>{
-    try{
+const products = async (req, res) => {
+    try {
         res.render('users/products')
-    }catch(error){
+    } catch (error) {
         console.log(error.message)
     }
 }
 
 
-module.exports={
+module.exports = {
     addProductPage,
     addProduct,
     product,
@@ -276,7 +276,7 @@ module.exports={
     editProduct,
     allProducts,
     productDetails,
-    searchProducts ,
-   
-    
+    searchProducts,
+
+
 }

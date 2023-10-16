@@ -1,71 +1,70 @@
 <%- include('../layouts/header.ejs') %>
-<style>
-    .content-main {
-        /* Set the background image */
-        background-image: url('/images/logui2.jpg');
+    <style>
+        .content-main {
+            /* Set the background image */
+            background-image: url('/images/logui2.jpg');
 
-        /* Adjust background properties as needed */
-        background-size: cover;
-        /* Cover the entire section */
-        background-position: center;
-        /* Center the background image */
-        background-repeat: no-repeat;
-        /* Prevent image repetition */
-        max-width: 100%;
-        max-height: 100%;
-        height: 100vh;
-        /* Add additional styling */
-        padding-top: 150px;
-        /* Increase the top padding */
-        padding-bottom: 100px;
-        /* Increase the bottom padding */
-        padding-left: 20px;
-        /* Optional: Adjust left padding if needed */
-        padding-right: 20px;
+            /* Adjust background properties as needed */
+            background-size: cover;
+            /* Cover the entire section */
+            background-position: center;
+            /* Center the background image */
+            background-repeat: no-repeat;
+            /* Prevent image repetition */
+            max-width: 100%;
+            max-height: 100%;
+            height: 100vh;
+            /* Add additional styling */
+            padding-top: 150px;
+            /* Increase the top padding */
+            padding-bottom: 100px;
+            /* Increase the bottom padding */
+            padding-left: 20px;
+            /* Optional: Adjust left padding if needed */
+            padding-right: 20px;
 
-    }
+        }
 
-    * {
-        margin: 0;
+        * {
+            margin: 0;
 
-    }
+        }
 
-    .brand-header {
-        text-align: center;
-        font-family: CustomFont, sans-serif;
-        /* Use the custom font or a fallback sans-serif font */
-    }
+        .brand-header {
+            text-align: center;
+            font-family: CustomFont, sans-serif;
+            /* Use the custom font or a fallback sans-serif font */
+        }
 
-    .slogan {
-        text-align: center;
-        font-style: italic;
-        color: #555;
-        /* Customize the color to your preference */
-    }
+        .slogan {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            /* Customize the color to your preference */
+        }
 
-    .login-title {
-        text-align: center;
-    }
+        .login-title {
+            text-align: center;
+        }
 
-    .brand-container {
-        height: 65px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .brand-container {
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .card-login {
-        margin-top: 20px;
+        .card-login {
+            margin-top: 20px;
 
-        background-color: rgba(161, 153, 149, 0.6);
-        margin-bottom: 30px;
-    }
-</style>
+            background-color: rgba(161, 153, 149, 0.6);
+            margin-bottom: 30px;
+        }
+    </style>
 
     <section class="content-main">
         <div class="brand-container">
-            <div class="brand-header"
-                style="color: white; font-size: 20px; ">
+            <div class="brand-header" style="color: white; font-size: 20px; ">
                 <!-- Brand name content -->
                 <h3><span>Halang.</span></h3>
             </div>
@@ -74,19 +73,20 @@
         <div class="card mx-auto card-login ">
             <form name="register" method="post" id="registerForm">
                 <div class="card-body">
-                    <h4 class="card-title" style="color: rgb(53, 48, 48); font-family: sans-serif; font-size: 24px; font-weight: bold; text-align: center; text-transform: uppercase;">
+                    <h4 class="card-title"
+                        style="color: rgb(53, 48, 48); font-family: sans-serif; font-size: 24px; font-weight: bold; text-align: center; text-transform: uppercase;">
                         Sign Up</h4>
                     <div class="mb-3">
                         <input class="form-control" name="name" placeholder="Username " type="text" autocomplete="off">
                         <p id="nameError" style="color: red;" class="error-message"></p>
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" name="email" placeholder="Useremail" type="text">
+                        <input class="form-control" name="email" placeholder="Email" type="text">
                         <p id="emailError" style="color: red;" class="error-message ">
                         </p>
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" name="tel" placeholder="User phoneno" type="text">
+                        <input class="form-control" name="tel" placeholder="Phone number" type="text">
                         <p id="telError" style="color: red;" class="error-message "></p>
                     </div>
                     <div class="mb-3">
@@ -95,11 +95,12 @@
                         <p id="passwordError" style="color: red;" class="error-message"></p>
                     </div>
                     <div class="mb-4">
-                        <button type="submit" class="btn btn-dark w-100"  style="background-color:  rgb(53, 48, 48)"> Sign up
+                        <button type="submit" class="btn btn-dark w-100" style="background-color:  rgb(53, 48, 48)">
+                            Sign up
                         </button>
                     </div>
                     <p class="text-center mb-4" style="color: black;  ">Already have an account? <a href="/userlogin"
-                        style="color: rgb(1, 1, 105);">Login</a></p>
+                            style="color: rgb(1, 1, 105);">Login</a></p>
                 </div>
             </form>
         </div>

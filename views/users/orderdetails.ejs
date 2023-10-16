@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Evara Dashboard</title>
+    <title>Halang Furnitures</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="icon" href=" /assets/imgs/theme/Black White Logo.png">
     <!-- Template CSS -->
@@ -35,9 +35,9 @@
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                     <li><a class="nav-link" href="/">Home</a></li>
                     <li><a class="nav-link" href="/products">Shop</a></li>
-                    <li><a class="nav-link" href="">About us</a></li>
+                    <!-- <li><a class="nav-link" href="">About us</a></li>
                     <li><a class="nav-link" href="">Services</a></li>
-                    <li><a class="nav-link" href="">Contact us</a></li>
+                    <li><a class="nav-link" href="">Contact us</a></li> -->
 
                 </ul>
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -117,10 +117,13 @@
                                 </p>
                             </div>
                         </article>
-                        <article class="icontext align-items-start">
-                            <a href="/invoice?orderId=<%= order._id %>" class="btn btn-success">Invoice</a>
 
+                        <article class="icontext align-items-start">
+                            <% if(order.orderStatus==='Delivered' ){ %>
+                                <a href="/invoice?orderId=<%= order._id %>" class="btn btn-success">Invoice</a>
+                                <% } %>
                         </article>
+
                     </div> <!-- col// -->
                 </div> <!-- row // -->
                 <div class="row">
@@ -230,7 +233,7 @@
     <script>
 
         function returnOrder(orderId) {
-            // Define an array of return reasons
+
             const returnReasons = [
                 'Item damaged',
                 'Wrong item received',
@@ -262,7 +265,7 @@
                 if (result.isConfirmed) {
                     const { selectedReason } = result.value;
 
-                   
+
                     $.ajax({
                         url: '/orderreturn',
                         method: 'POST',
@@ -277,14 +280,14 @@
                                 if (response.error === 'NotDelivered') {
                                     Swal.fire('Cannot return the order', 'The order has not been delivered yet.', 'error');
                                 } else if (response.error === 'Over10Days') {
-                                    Swal.fire('Cannot return the order', 'You cannot return an order placed more than 10 days ago.', 'error');
+                                    Swal.fire('Return Not Possible', 'You cannot return an order placed more than 10 days ago.', 'error');
                                 } else {
                                     Swal.fire('Error', 'An error occurred while returning the order.', 'error');
                                 }
                             }
                         },
                         error: function () {
-                           
+
                             console.log('Error: An error occurred while making the AJAX request.');
                         }
                     });

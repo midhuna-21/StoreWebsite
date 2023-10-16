@@ -29,7 +29,7 @@ module.exports = {
     adminlogin: async (req, res, next) => {
         try {
             if (req.session.user_id) {
-                res.redirect("/admin/dashboard"); 
+                res.redirect("/admin/dashboard");
             } else {
                 next();
             }

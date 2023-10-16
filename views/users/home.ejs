@@ -11,9 +11,10 @@
 	<!-- Bootstrap CSS -->
 	<link href="uiHome/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="uiHome/css/tiny-slider.css" rel="stylesheet">
 	<link href="uiHome/css/style.css" rel="stylesheet">
-	<title>Furniture </title>
+	<title>Halang Furnitures</title>
 </head>
 <style>
 	.section-heading {
@@ -29,6 +30,7 @@
 		background-color: #585454;
 		margin: 20px 0;
 	}
+
 	.footer-divider {
 		width: 100%;
 		height: 0.5px;
@@ -66,9 +68,9 @@
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					<li><a class="nav-link" href="/">Home</a></li>
 					<li><a class="nav-link" href="/products">Shop</a></li>
-					<li><a class="nav-link" href="about.html">About us</a></li>
-					<li><a class="nav-link" href="services.html">Services</a></li>
-					<li><a class="nav-link" href="blog.html">Contact us</a></li>
+					<!-- <li><a class="nav-link" href="about.html">About us</a></li>
+					<li><a class="nav-link" href="services.html">Services</a></li> -->
+					<!-- <li><a class="nav-link" href="blog.html">Contact us</a></li> -->
 
 					<% if(userLoggedIn) { %>
 						<li><span class="nav-link">Welcome, <%= user?.name %></span></li>
@@ -87,7 +89,6 @@
 		</div>
 	</nav>
 
-
 	<!-- End Header/Navigation -->
 	<!-- Start Hero Section -->
 	<div class="hero" style="padding-bottom: 500px;">
@@ -102,13 +103,15 @@
 				</div>
 				<div class="col-lg-7">
 					<div class="hero-img-wrap">
-						
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<!-- End Hero Section -->
+	<!-- End Hero Section -->
+
+
 
 	<!-- Start Product Section -->
 	<div class="product-section">
@@ -119,25 +122,27 @@
 					<div class="section-divider"></div>
 				</div>
 				<!-- Start Column 2 -->
-				<% products.forEach((product) => { %>
+				<% products.forEach((product)=> { %>
 					<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-					  <a class="product-item" href=/productdetails?productid=<%= product._id %>>
-						<img src="/uploadProduct/<%= product.image[0] %>" class="img-fluid product-thumbnail">
-						
-						<h3 class="product-title">
-						  <%= product.productname %>
-						</h3>
-						<strong class="product-price">
-						  <%= product.productprice %>
-						</strong>
-					  </a>
+						<a class="product-item" href=/productdetails?productid=<%=product._id %>>
+							<img src="/uploadProduct/<%= product.image[0] %>" class="img-fluid product-thumbnail">
+
+							<h3 class="product-title">
+								<%= product.productname %>
+							</h3>
+							<strong class="product-price">
+								₹<%= product.productprice %>
+							</strong>
+						</a>
 					</div>
-				  <% }); %>
-				  
+					<% }); %>
+
 			</div>
 		</div>
 	</div>
 	</div>
 	<!-- End Product Section -->
-
-<%- include('../layouts/partials/footer.ejs') %>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<%- include('../layouts/partials/footer.ejs') %>

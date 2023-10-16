@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Shoping Cart</title>
+	<title>Halang Furnitures</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -145,23 +145,30 @@
 		/* Center the divider horizontally */
 		margin-top: 125px;
 	}
+
 	.btn-pagination {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #01060b;
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 2px;
-}
+		display: inline-block;
+		padding: 8px 16px;
+		background-color: #01060b;
+		color: #fff;
+		text-decoration: none;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		margin: 2px;
+	}
 
-.btn-pagination.current-page {
-  background-color: #ccc;
-  color: #333;
-}
+	.btn-pagination.current-page {
+		background-color: #ccc;
+		color: #333;
+	}
 
+	.footer-divider {
+		width: 100%;
+		height: 0.5px;
+		background-color: #c6bdbd;
+		margin: 20px 0;
+	}
 </style>
 
 <body>
@@ -177,9 +184,9 @@
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					<li><a class="nav-link" href="/">Home</a></li>
 					<li><a class="nav-link" href="/products">Shop</a></li>
-					<li><a class="nav-link" href="about.html">About us</a></li>
+					<!-- <li><a class="nav-link" href="about.html">About us</a></li>
 					<li><a class="nav-link" href="services.html">Services</a></li>
-					<li><a class="nav-link" href="blog.html">Contact us</a></li>
+					<li><a class="nav-link" href="blog.html">Contact us</a></li> -->
 
 				</ul>
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -218,22 +225,33 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% wallet.transactions.forEach(function(transaction, index) { %>
-								<tr>
-									<th scope="row"><%= index + 1 %></th>
-									<td><%= transaction.date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' }) %></td>
-									<td><%= transaction.type %></td>
-									<td>
-										<% if (transaction.amount > 0) { %>
-											<span class="text-success"><%= transaction.amount %></span>
-										<% } else if (transaction.amount < 0) { %>
-											<span class="text-danger"><%= transaction.amount %></span>
-										<% } else { %>
-											<%= transaction.amount %>
-										<% } %>
-									</td>
-								</tr>
-								<% }); %>
+								<% transactions.forEach(function(transaction, index) { %>
+									<tr>
+										<th scope="row">
+											<%= index + 1 %>
+										</th>
+										<td>
+											<%= transaction.date.toLocaleDateString('en-IN', { year: 'numeric' ,
+												month: 'short' , day: 'numeric' }) %>
+										</td>
+										<td>
+											<%= transaction.type %>
+										</td>
+										<td>
+											<% if (transaction.amount> 0) { %>
+												<span class="text-success">
+													<%= transaction.amount %>
+												</span>
+												<% } else if (transaction.amount < 0) { %>
+													<span class="text-danger">
+														<%= transaction.amount %>
+													</span>
+													<% } else { %>
+														<%= transaction.amount %>
+															<% } %>
+										</td>
+									</tr>
+									<% }); %>
 							</tbody>
 						</table>
 						<% } %>
@@ -242,13 +260,14 @@
 
 				<!-- Pagination controls -->
 				<div class="pagination">
-					<% for (let i = 1; i <= totalPages; i++) { %>
-					  <a href="?page=<%= i %>" class="btn-pagination<%= i === currentPage ? ' current-page' : '' %>"><%= i %></a>
-					<% } %>
-				  </div>
-				  
+					<% for (let i=1; i <=totalPages; i++) { %>
+						<a href="?page=<%= i %>" class="btn-pagination<%= i === currentPage ? ' current-page' : '' %>">
+							<%= i %>
+						</a>
+						<% } %>
+				</div>
 
 
 
 
-	<%- include('../layouts/footer.ejs') %>
+				<%- include('../layouts/partials/footer.ejs') %>

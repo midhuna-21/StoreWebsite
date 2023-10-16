@@ -2,11 +2,12 @@ const User = require("../models/userModel");
 const Product = require("../models/productModel");
 const Category = require("../models/categoryModel");
 const Wallet = require("../models/walletModel");
+
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const configs = require("../config/config");
 const dotenv = require('dotenv');
-dotenv.config(); 
+dotenv.config();
 
 
 // password hashing
@@ -83,7 +84,7 @@ const insertUser = async (req, res) => {
             });
         }
     } catch (error) {
-        console.log(error.message); 
+        console.log(error.message);
         res.status(500).json({
             success: false,
             messages: ["An error occured during registration"],
@@ -93,11 +94,11 @@ const insertUser = async (req, res) => {
 
 // email sending process
 const sendVerifyMail = async (name, email, otp) => {
-    const email1=process.env.EMAIL
-    const password=process.env.PASSWORD
-    console.log('email',email1)
-    console.log('pad',password)
-   
+    const email1 = process.env.EMAIL
+    const password = process.env.PASSWORD
+    console.log('email', email1)
+    console.log('pad', password)
+
     try {
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
@@ -105,8 +106,8 @@ const sendVerifyMail = async (name, email, otp) => {
             secure: false,
             requireTLS: true,
             auth: {
-                user:process.env.EMAIL,      
-                pass:process.env.PASSWORD,
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD,
             }
         });
         var otp = generateOtp();
@@ -117,13 +118,6 @@ const sendVerifyMail = async (name, email, otp) => {
             html: `<p> Hi ${name},your otp is ${otp} verify</a> your mail</p>`,
 
         };
-
-const hai='hello'
-
-
-
-
-
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
@@ -300,9 +294,9 @@ const otp = async (req, res) => {
 // home page
 const loadHome = async (req, res) => {
     try {
-      
+
         const userId = req.session.user_id;
-        const products = await Product.find().sort({ createdAt: -1 }).limit(8);        ;
+        const products = await Product.find({ isListed: true }).sort({ createdAt: -1 }).limit(8);;
         const categories = await Category.find();
         const user = await User.findById(userId);
 
@@ -313,14 +307,16 @@ const loadHome = async (req, res) => {
                 products,
                 categories,
                 user,
+
             });
         } else {
-            console.log('produd',products)
+            // console.log('produd',products)
             res.render("users/home", {
                 products,
                 userLoggedIn,
                 categories,
                 user,
+
             });
         }
     } catch (error) {
@@ -334,7 +330,7 @@ const userLogout = async (req, res) => {
         req.session.destroy();
         userLoggedIn = false;
         res.redirect("/");
-        
+
     } catch (error) {
         console.log(error.message);
     }
@@ -483,7 +479,7 @@ const resetPasswordemail = async (req, res) => {
             req.session.resetEmail = email;
             req.session.forgot_user_id = user._id;
             req.session.time = Date.now()
-           
+
             res.json({ success: true });
         } else {
             res.json({ success: false, message: "User not found" });
@@ -530,24 +526,25 @@ const newPassword = async (req, res) => {
 const showWalletHistory = async (req, res) => {
     try {
         const page = req.query.page || 1;
-        const itemsPerPage = 3;
+        const itemsPerPage = 8;
 
-  
+
         const wallet = await Wallet.findOne({ userId: req.session.user_id });
-     
+
         const totalTransactions = wallet ? wallet.transactions.length : 0;
         const totalPages = Math.ceil(totalTransactions / itemsPerPage);
 
         const startIndex = (page - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-
+        console.log(page, startIndex, endIndex, itemsPerPage)
         const sortedTransactions = wallet
             ? wallet.transactions.sort((a, b) => b.date - a.date)
             : [];
         const transactions = wallet
             ? wallet.transactions.slice(startIndex, endIndex)
             : [];
-        
+        console.log(transactions.length)
+        console.log('transaction.items')
         res.render("users/walletHistory", {
             wallet,
             transactions,
@@ -573,7 +570,7 @@ const showAddress = async (req, res) => {
 const deleteAddress = async (req, res) => {
     try {
         const userId = req.session.user_id;
-        const addressIndex = req.params.addressIndex; 
+        const addressIndex = req.params.addressIndex;
 
         const user = await User.findById(userId);
 

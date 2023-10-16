@@ -1,107 +1,4 @@
 <%- include('../layouts/slidebar.ejs') %>
-    <style>
-        .logo {
-            width: 10px;
-            height: auto;
-
-        }
-
-        .aside-top {
-            background-color: black;
-
-        }
-
-        .content-main {
-            min-height: 500px;
-        }
-
-        .navbar-aside {
-            background-color: black;
-            color: white;
-            width: 240px;
-            padding: 20px;
-
-        }
-
-        .navbar-aside .logo {
-            display: block;
-            margin: 0 auto;
-            max-width: 80%;
-
-        }
-
-        .menu-aside {
-            list-style: none;
-            padding: 0;
-        }
-
-        .menu-item {
-            margin-bottom: 10px;
-        }
-
-        .menu-link {
-            display: block;
-            padding: 10px;
-            color: white;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .menu-link:hover {
-            color: black;
-        }
-
-        .submenu {
-            display: none;
-        }
-
-        .menu-item.active .submenu {
-            display: block;
-        }
-
-        .submenu a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .submenu a:hover {
-            text-decoration: underline;
-        }
-
-        .menu-link .text {
-            color: white
-        }
-
-        .menu-link:hover .text {
-            color: black;
-        }
-
-        .submenu a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .submenu a:hover {
-            color: black;
-        }
-
-        .ss a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .ss a:hover {
-            color: black;
-        }
-
-        .main-wrapped {
-            margin-left: 160px;
-            background-color: white;
-            position: relative
-        }
-    </style>
-
 
     <main class="main-wrap">
         <section class="content-main">
@@ -210,7 +107,7 @@
                 let discount = $("#discount").val().trim();
                 let maxDiscount = $("#maxDiscount").val().trim();
                 let minAmount = $("#minAmount").val().trim();
-                let expirationDate = new Date ($("#expirationDate").val().trim());
+                let expirationDate = new Date($("#expirationDate").val().trim());
 
                 // Validation
                 var isValid = true;

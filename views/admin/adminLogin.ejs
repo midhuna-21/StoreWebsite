@@ -80,33 +80,34 @@
 <body>
     <section class="content-main">
         <div class="brand-container">
-            <div class="brand-header"
-                style="color: white; font-size: 20px; ">
+            <div class="brand-header" style="color: white; font-size: 20px; ">
                 <!-- Brand name content -->
                 <h3><span>Halang.</span></h3>
             </div>
         </div>
 
         <div class="card mx-auto card-login " style="background-color: rgba(255, 255, 255, 0.6); ">
-            
+
             <form action="/admin/login" id="loginForm">
                 <div class="card-body">
-                    <h4 class="card-title mb-4"  style="color: rgb(53, 48, 48); font-family: sans-serif; font-size: 24px; font-weight: bold; text-align: center; text-transform: uppercase;">
+                    <h4 class="card-title mb-4"
+                        style="color: rgb(53, 48, 48); font-family: sans-serif; font-size: 24px; font-weight: bold; text-align: center; text-transform: uppercase;">
                         Sign in</h4>
                     <div class="mb-3">
-                        <input class="form-control" name="email" placeholder="Useremail" type="text" autocomplete="off">
-                        <p id="emailError" class="error-message"style="color: red;"></p>
+                        <input class="form-control" name="email" placeholder="Email" type="text" autocomplete="off">
+                        <p id="emailError" class="error-message" style="color: red;"></p>
                     </div>
                     <div class="mb-3">
                         <input class="form-control" name="password" placeholder="Password" type="password"
                             autocomplete="new-password">
-                        <p id="passwordError" class="error-message"style="color: red;"></p>
+                        <p id="passwordError" class="error-message" style="color: red;"></p>
                     </div>
                     <div class="mb-3">
                         <!-- <a href="#" class="text-center " style="color: black;">Forgot password?</a> -->
                     </div>
                     <div class="mb-4">
-                        <button type="button" onclick="submitForm()" class="btn btn-primary w-100 bg-dark" style="background-color:  rgb(53, 48, 48)"> sign in </button>
+                        <button type="button" onclick="submitForm()" class="btn btn-primary w-100 bg-dark"
+                            style="background-color:  rgb(53, 48, 48)"> sign in </button>
                     </div>
                 </div>
             </form>
@@ -129,13 +130,13 @@
                         password: password
                     },
                     success: function (response) {
-                        if(response.success){
-                            
+                        if (response.success) {
+
                             window.location.href = "/admin/dashboard";
-                        }else {
+                        } else {
                             $("#emailError").text(response.email);
                             $("#passwordError").text(response.password);
-                        }            
+                        }
                     },
                     error: function (error) {
                         console.error("Error:", error);
@@ -152,17 +153,17 @@
                 document.getElementById("emailError").textContent = "";
                 document.getElementById("passwordError").textContent = "";
 
-                if(email === ""){
+                if (email === "") {
                     document.getElementById("emailError").textContent = "please enter email";
                     isValid = false;
-                }else{
+                } else {
                     let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                    if(!emailRegex.test(email)){
+                    if (!emailRegex.test(email)) {
                         document.getElementById("emailError").textContent = "please enter a valid email";
                         isValid = false;
                     }
                 }
-                if(password === "") {
+                if (password === "") {
                     document.getElementById("passwordError").textContent = "please enter password";
                     isValid = false;
                 }

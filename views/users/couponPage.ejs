@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Shoping Cart</title>
+	<title>Halang Furnitures</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -107,18 +107,21 @@
 		right: -12.5px;
 
 	}
+
 	.footer-divider {
-    width: 100%; /* Increase the width to 95% */
-    height: 0.5px;
-    background-color: #c6bdbd;
-    margin: 20px auto; /* Center the divider horizontally */
-	margin-top: 50px;
-}
+		width: 100%;
+		/* Increase the width to 95% */
+		height: 0.5px;
+		background-color: #c6bdbd;
+		margin: 20px auto;
+		/* Center the divider horizontally */
+		margin-top: 50px;
+	}
 </style>
 
 <body>
 	<!-- Start Header/Navigation -->
-	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar"  >
+	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 		<div class="container">
 			<a class="navbar-brand" href="index.html">Halang<span>.</span></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
@@ -129,9 +132,9 @@
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					<li><a class="nav-link" href="/">Home</a></li>
 					<li><a class="nav-link" href="/products">Shop</a></li>
-					<li><a class="nav-link" href="about.html">About us</a></li>
+					<!-- <li><a class="nav-link" href="about.html">About us</a></li>
 					<li><a class="nav-link" href="services.html">Services</a></li>
-					<li><a class="nav-link" href="blog.html">Contact us</a></li>
+					<li><a class="nav-link" href="blog.html">Contact us</a></li> -->
 
 				</ul>
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -148,87 +151,96 @@
 
 
 	<!-- Coupons -->
-	<% coupons.forEach(function(coupon) { %>
-		<div class="coup" style="padding-left: 70px; padding-top: 50px; padding-bottom: 80px;">
-		<div class="coupon-card" >
-			<h3>
-				<%= coupon.description %>
-			</h3>
-			<div class="coupon-row">
-				<span id="cpnCode">
-					<%= coupon.couponCode %>
-				</span>
-				<span class="cpnBtn" data-coupon-code="<%= coupon.couponCode %>"
-					data-min-amount="<%= coupon.minAmount %>">Apply</span>
-			</div>
-			<p>Valid until: <%= coupon.expirationDate.toDateString() %>
-			</p>
+	<div class="coup" style="padding-left: 241px; padding-top: 50px; padding-bottom: 80px;">
+		<div class="row">
+			<% coupons.forEach(function(coupon, index) { %>
+				<div class="col-md-6">
+					<div class="coupon-card">
+						<h3>
+							<%= coupon.description %>
+						</h3>
+						<div class="coupon-row">
+							<span id="cpnCode">
+								<%= coupon.couponCode %>
+							</span>
+							<span class="cpnBtn" data-coupon-code="<%= coupon.couponCode %>"
+								data-min-amount="<%= coupon.minAmount %>">Apply</span>
+						</div>
+						<p>Valid until: <%= coupon.expirationDate.toDateString() %>
+						</p>
+					</div>
+				</div>
+				<% if ((index + 1) % 2===0) { %>
 		</div>
-		<% }); %>
+		<div class="row">
+			<% } %>
+				<% }); %>
 		</div>
-			<input type="hidden" id="currentPurchaseAmount" value="<%= calculateTotalPrice %>">
+	</div>
+
+	<input type="hidden" id="currentPurchaseAmount" value="<%= calculateTotalPrice %>">
 
 
 
-			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-			<script>
-				$(document).ready(function () {
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		$(document).ready(function () {
 
-					$(".cpnBtn").on("click", function () {
-						var couponCode = $(this).data("coupon-code");
-						var minAmount = parseFloat($(this).data("min-amount"));
-						var currentPurchaseAmount = parseFloat($("#currentPurchaseAmount").val());
+			$(".cpnBtn").on("click", function () {
+				var couponCode = $(this).data("coupon-code");
+				var minAmount = parseFloat($(this).data("min-amount"));
+				var currentPurchaseAmount = parseFloat($("#currentPurchaseAmount").val());
 
-						if (!isNaN(minAmount) && !isNaN(currentPurchaseAmount)) {
-							if (currentPurchaseAmount >= minAmount) {
+				if (!isNaN(minAmount) && !isNaN(currentPurchaseAmount)) {
+					if (currentPurchaseAmount >= minAmount) {
 
-								$.ajax({
-									url: "/couponget",
-									method: "POST",
-									data: { couponCode: couponCode },
-									success: function (response) {
+						$.ajax({
+							url: "/couponget",
+							method: "POST",
+							data: { couponCode: couponCode },
+							success: function (response) {
 
-										if (response.success) {
-											Swal.fire(
-												'Success',
-												'Coupon applied successfully.',
-												'success'
-											).then(function () {
-												window.location.href = '/checkout?couponCode=' + encodeURIComponent(response.couponCode);
-											});
-										} else {
-											Swal.fire(
-												'Error',
-												'Coupon is not applicable. Error: ' + response.error,
-												'error'
-											);
-										}
-									},
-									error: function () {
-										Swal.fire(
-											'Error',
-											'Error occurred while checking the coupon.',
-											'error'
-										);
-									}
-								});
-							} else {
+								if (response.success) {
+									Swal.fire(
+										'Success',
+										'Coupon applied successfully.',
+										'success'
+									).then(function () {
+										window.location.href = '/checkout?couponCode=' + encodeURIComponent(response.couponCode);
+									});
+								} else {
+									Swal.fire(
+										'Error',
+										'Coupon is not applicable. Error: ' + response.error,
+										'error'
+									);
+								}
+							},
+							error: function () {
 								Swal.fire(
 									'Error',
-									'Purchase amount is less than the minimum required.',
+									'Error occurred while checking the coupon.',
 									'error'
 								);
 							}
-						} else {
-							Swal.fire(
-								'Error',
-								'Invalid purchase amount or minimum amount.',
-								'error'
-							);
-						}
-					});
-				});
-			</script>
+						});
+					} else {
+						Swal.fire(
+							'Error',
+							'Purchase amount is less than the minimum required.',
+							'error'
+						);
+					}
+				} else {
+					Swal.fire(
+						'Error',
+						'Invalid purchase amount or minimum amount.',
+						'error'
+					);
+				}
+			});
+		});
+	</script>
 
-<%- include('../layouts/partials/footer.ejs') %>
+	<%- include('../layouts/partials/footer.ejs') %>

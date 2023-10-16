@@ -1,5 +1,6 @@
 <%- include('../layouts/slidebar.ejs') %>
-<section class="content-main" style="background-color: #f8f8f8; width: 1200px;">
+    <main class="main-wrap">
+        <section class="content-main">
             <div class="content-header">
                 <div>
                     <h2 class="content-title card-title">Edit Categories </h2>
@@ -110,7 +111,7 @@
                 else if (categoryname.length > maxNameLength) {
                     categoryNameError.textContent = `Category Name must not exceed ${maxNameLength} characters.`;
                     isValid = false;
-                }else if(!categoryname.match(/^[a-z ,.'-]+$/i)){
+                } else if (!categoryname.match(/^[a-z ,.'-]+$/i)) {
                     categoryNameError.textContent = 'Category name should not include special characters'
                     isValid = false;
                 }
@@ -123,12 +124,12 @@
                     descriptionError.textContent = `Description must not exceed ${maxDescriptionLength} characters.`;
                     isValid = false;
                 }
-                else if(!description.match(/^[a-z ,.'-]+$/i)){
+                else if (!description.match(/^[a-z ,.'-]+$/i)) {
                     descriptionError.textContent = 'Description should not include special characters'
                     isValid = false;
                 }
 
-             
+
                 if (fileInput.files.length > 0) {
                     const fileName = fileInput.value.toLowerCase();
                     const fileExtension = fileName.substring(fileName.lastIndexOf('.'));

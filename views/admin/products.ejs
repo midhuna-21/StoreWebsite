@@ -52,94 +52,95 @@
         }
 
         .btn-fixed-size {
-    width: 110px; 
-    height: 30px; 
-}
+            width: 110px;
+            height: 30px;
+        }
     </style>
 
-
-    <section class="content-main container mt-4">
-
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width: 200px;">Product</th>
-                            <th style="width: 200px;">Name</th>
-                            <th style="width: 200px;">Price</th>
-                            <th style="width: 200px;">Category</th>
-                            <th style="width: 200px;">Quantity</th>
-                            <th style="width: 200px;">Color</th>
-                            <th style="width: 200px;">Description</th>
-                            <th style="width: 200px;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% products.forEach(product=> { %>
+    <main class="main-wrap">
+        <section class="content-main">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
                             <tr>
-                                <td>
-                                    <% if (product.image && product.image.length> 0) { %>
-                                        <img src="/uploadProduct/<%= product.image[0] %>" class="img-thumbnail"
-                                            alt="<%= product.productname %>" style="max-width: 100px;">
-                                        <% } %>
-                                </td>
-                                <td class="category-cell">
-                                    <h6 class="mb-0">
-                                        <%= product.productname %>
-                                    </h6>
-                                </td>
-                                <td>
-                                    ₹<%= product.productprice %>
-                                </td>
-                                <td class="category-cell">
-                                    <%= product.categoryname %>
-                                </td>
-                                <td>
-                                    <%= product.quantity %>
-                                </td>
-                                <td>
-                                    <%= product.color %>
-                                </td>
-                                <td class="category-cell">
-                                    <%= product.description %>
-                                </td>
+                                <th style="width: 200px;">Product</th>
+                                <th style="width: 200px;">Name</th>
+                                <th style="width: 200px;">Price</th>
+                                <th style="width: 200px;">Category</th>
+                                <th style="width: 200px;">Quantity</th>
+                                <th style="width: 200px;">Color</th>
+                                <th style="width: 200px;">Description</th>
+                                <th style="width: 200px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% products.forEach(product=> { %>
+                                <tr>
+                                    <td>
+                                        <% if (product.image && product.image.length> 0) { %>
+                                            <img src="/uploadProduct/<%= product.image[0] %>" class="img-thumbnail"
+                                                alt="<%= product.productname %>" style="max-width: 100px;">
+                                            <% } %>
+                                    </td>
+                                    <td class="category-cell">
+                                        <h6 class="mb-0">
+                                            <%= product.productname %>
+                                        </h6>
+                                    </td>
+                                    <td>
+                                        ₹<%= product.productprice %>
+                                    </td>
+                                    <td class="category-cell">
+                                        <%= product.categoryname %>
+                                    </td>
+                                    <td>
+                                        <%= product.quantity %>
+                                    </td>
+                                    <td>
+                                        <%= product.color %>
+                                    </td>
+                                    <td class="category-cell">
+                                        <%= product.description %>
+                                    </td>
 
-                                <td>
-                                    
-                                        <a href="/admin/edit-product/<%= product._id %>" class="btn btn-sm btn-primary btn-fixed-size">
-                                           Edit
+                                    <td>
+
+                                        <a href="/admin/edit-product/<%= product._id %>"
+                                            class="btn btn-sm btn-primary btn-fixed-size">
+                                            Edit
                                         </a>
-                                        
+
                                         <% if (product.isListed) { %>
                                             <a href="/admin/unlistproduct/<%= product._id %>"
                                                 class="btn btn-danger p-1 btn-fixed-size">Unlist</a>
                                             <% } else { %>
                                                 <a href="/admin/listproduct/<%= product._id %>"
                                                     class="btn btn-success p-1 btn-fixed-size">List</a>
-                                                <% } %>   
-                                    
-                                    
-                                </td>
-                            </tr>
-                            <% }) %>
-                    </tbody>
-                </table>
-            </div>
-            <div class=" p-5 text-center d-flex justify-content-center ">
-                <div class="pagination">
-                    <% for (let i=1; i <=totalPages; i++) { %>
-                        <a href="?page=<%= i %>" class="btn-pagination<%= i === currentPage ? ' current-page' : '' %>">
-                            <%= i %>
-                        </a>
-                        <% } %>
+                                                <% } %>
+
+
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
                 </div>
+                <div class=" p-5 text-center d-flex justify-content-center ">
+                    <div class="pagination">
+                        <% for (let i=1; i <=totalPages; i++) { %>
+                            <a href="?page=<%= i %>"
+                                class="btn-pagination<%= i === currentPage ? ' current-page' : '' %>">
+                                <%= i %>
+                            </a>
+                            <% } %>
+                    </div>
 
+                </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    </main>
 
 
     <%- include('../layouts/slidefooter.ejs') %>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

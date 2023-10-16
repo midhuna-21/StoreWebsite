@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Product Detail</title>
+	<title>Halang Furnitures</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -76,16 +76,14 @@
 
 	.footer-divider {
 		width: 100%;
-		/* Increase the width to 95% */
 		height: 0.5px;
 		background-color: #c6bdbd;
-		margin: 20px auto;
-		/* Center the divider horizontally */
-		margin-top: 125px;
+		margin: 20px 0;
 	}
+
 	.custom-heart-icon {
-    color: red !important;
-}
+		color: red !important;
+	}
 </style>
 
 <body>
@@ -102,9 +100,9 @@
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					<li><a class="nav-link" href="/">Home</a></li>
 					<li><a class="nav-link" href="/products">Shop</a></li>
-					<li><a class="nav-link" href="about.html">About us</a></li>
+					<!-- <li><a class="nav-link" href="about.html">About us</a></li>
 					<li><a class="nav-link" href="services.html">Services</a></li>
-					<li><a class="nav-link" href="blog.html">Contact us</a></li>
+					<li><a class="nav-link" href="blog.html">Contact us</a></li> -->
 
 				</ul>
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -237,20 +235,22 @@
 
 													<!-- Add to Wishlist
 														</button> -->
-														<% if (product.isWishlist === true) { %>
-															<div class="wishlist-icon-remove" style="padding-left: 182px;">
-																<i id="wishlistIconRemove" data-productid="<%= product._id %>"
-																	class="fa-solid fa-heart"
-																	style="font-size: 40px;"></i>
-															</div>
-														<%  }else {  %>
-														
+													<% if (product.isWishlist===true) { %>
+														<div class="wishlist-icon-remove" style="padding-left: 182px;">
+															<i id="wishlistIconRemove"
+																data-productid="<%= product._id %>"
+																class="fa-solid fa-heart" style="font-size: 40px;"></i>
+														</div>
+														<% }else { %>
+
 															<div class="wishlist-icon-add" style="padding-left: 182px;">
-																<i id="wishlistIconAdd" class="fa-regular fa-heart" style="font-size: 40px;" data-productid="<%= product._id %>"></i>
+																<i id="wishlistIconAdd" class="fa-regular fa-heart"
+																	style="font-size: 40px;"
+																	data-productid="<%= product._id %>"></i>
 
 															</div>
-														<% } %>
-														
+															<% } %>
+
 																<div id="quantity-message" class="error-message"></div>
 									</div>
 					</div>
@@ -307,12 +307,12 @@
 	<script>
 		$(document).ready(function () {
 			const wishlistBtn = $("#wishlistIconAdd");
-		
+
 			wishlistBtn.click(function (e) {
 				e.preventDefault();
-		
+
 				const productId = wishlistBtn.data("productid");
-		
+
 				$.ajax({
 					type: "POST",
 					url: `/addToWishlist/${productId}`,
@@ -320,7 +320,7 @@
 					contentType: "application/json",
 					success: function (response) {
 						console.log(response);
-		
+
 						if (response.success) {
 							$("#wishlistIconAdd").removeClass("fa-regular fa-heart").addClass("fa-solid fa-heart");
 							console.log('clicked')
@@ -334,31 +334,31 @@
 					},
 				});
 			});
-		
+
 			function showError(message) {
 				// Implement error handling here
 			}
 		});
-		</script>
-		
-	
-		<script>
+	</script>
+
+
+	<script>
 		$(document).ready(function () {
 			const wishlistBtn = $("#wishlistIconRemove");
-		
+
 			wishlistBtn.click(function (e) {
 				e.preventDefault();
-		
+
 				const productId = wishlistBtn.data("productid");
-		
+
 				$.ajax({
 					type: "POST",
-					url: `/removeWishlist/${productId}`, 
+					url: `/removeWishlist/${productId}`,
 					data: JSON.stringify({ productId }),
 					contentType: "application/json",
 					success: function (response) {
 						console.log(response);
-		
+
 						if (response.success) {
 							$("#wishlistIconRemove").removeClass("fa-solid fa-heart").addClass("fa-regular fa-heart");
 							console.log('clicked2')
@@ -372,17 +372,17 @@
 					},
 				});
 			});
-		
+
 			function showError(message) {
 				// Implement error handling here
 			}
 		});
-		</script>
-		
-		
-		
-		
-		
+	</script>
+
+
+
+
+
 
 
 	<!-- <script>

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Shoping Cart</title>
+	<title>Halang Furnitures</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -125,15 +125,16 @@
 		background-color: #f0f0f0;
 		/* Change the background color to highlight the selected address */
 	}
-	
-	.footer-divider {
-    width: 100%; /* Increase the width to 95% */
-    height: 0.5px;
-    background-color: #c6bdbd;
-    margin: 20px auto; /* Center the divider horizontally */
-	margin-top: 50px;
-}
 
+	.footer-divider {
+		width: 100%;
+		/* Increase the width to 95% */
+		height: 0.5px;
+		background-color: #c6bdbd;
+		margin: 20px auto;
+		/* Center the divider horizontally */
+		margin-top: 50px;
+	}
 </style>
 
 
@@ -151,9 +152,9 @@
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 					<li><a class="nav-link" href="/">Home</a></li>
 					<li><a class="nav-link" href="/products">Shop</a></li>
-					<li><a class="nav-link" href="about.html">About us</a></li>
+					<!-- <li><a class="nav-link" href="about.html">About us</a></li>
 					<li><a class="nav-link" href="services.html">Services</a></li>
-					<li><a class="nav-link" href="blog.html">Contact us</a></li>
+					<li><a class="nav-link" href="blog.html">Contact us</a></li> -->
 
 				</ul>
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -339,7 +340,7 @@
 						icon: 'error',
 						title: 'Oops...',
 						text: 'Please select both an address and a payment method before placing your order.'
-					});  
+					});
 					return; // Prevent further processing
 				}
 				let walletbutton = document.getElementById("f-option4")
@@ -379,7 +380,7 @@
 						} else if (response.method === 'wallet') {
 							showWalletSuccessMessage();
 						} else if (response.method == 'cod') {
-							
+
 							Swal.fire({
 								title: "Order success",
 								text: "order placed successfully",
@@ -391,7 +392,7 @@
 							}).then(function (result) {
 								if (result.value) {
 									location.href = '/orderlist'
-									
+
 								} else if (result.dismiss === "cancel") {
 									location.href = '/products'
 								}
@@ -409,13 +410,13 @@
 								"order_id": response.generateOrder.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
 								"handler": function (status) {
 
-									
+
 									verifyPayment(response, status)
 								},
-								"prefill": { 
-									"name": "Gaurav Kumar", 
+								"prefill": {
+									"name": "Gaurav Kumar",
 									"email": "gaurav.kumar@example.com",
-									"contact": "9000090000"  
+									"contact": "9000090000"
 								},
 								"notes": {
 									"address": "Razorpay Corporate Office"
@@ -462,7 +463,7 @@
 					},
 					success: (response) => {
 						if (response.status) {
-							
+
 							Swal.fire({
 								title: "Order success",
 								text: "order placed successfully",
@@ -474,7 +475,7 @@
 							}).then(function (result) {
 								if (result.value) {
 									location.href = '/orderlist'
-									
+
 								} else if (result.dismiss === "cancel") {
 									location.href = '/products'
 								}
@@ -534,4 +535,4 @@
 			})
 		</script>
 
-<%- include('../layouts/partials/footer.ejs') %>
+		<%- include('../layouts/partials/footer.ejs') %>

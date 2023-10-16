@@ -2,50 +2,50 @@ const mongoose = require('mongoose');
 const Coupon = require('../models/couponModel')
 
 const couponList = async (req, res) => {
-    try {
-        console.log('couponlist function')
-        const coupons = await Coupon.find()
-      res.render("admin/addCoupon",{coupons});
-    } catch (error) {
-      res.render('/error')
-    }
-  }
- 
-  const coupons = async (req, res) => {
-    try {
-        console.log('couponlist function')
-        const coupons = await Coupon.find()
-      res.render("admin/coupons",{coupons});
-    } catch (error) {
-      res.render('/error')
-    }
-  }
- 
-
-const addCoupon = async(req, res) => {
-  try {  
-      const { couponCode, description, discount, maxDiscount, minAmount, expirationDate } = req.body;
-      const newCoupon = new Coupon({
-          couponCode,
-          description,
-          discount,
-          maxDiscount,
-          minAmount,
-          expirationDate,
-          isListed: true
-      });
-      await newCoupon.save();
-
-      res.json({ message: 'Coupon added successfully' });
+  try {
+    console.log('couponlist function')
+    const coupons = await Coupon.find()
+    res.render("admin/addCoupon", { coupons });
   } catch (error) {
-      console.log(error);
-      res.status(500).json({ error: 'Internal server error' });
+    res.render('/error')
   }
 }
 
-const editCouponPage = async(req, res)=>{
+const coupons = async (req, res) => {
   try {
-    console.log('params id',req.params.id)
+    console.log('couponlist function')
+    const coupons = await Coupon.find()
+    res.render("admin/coupons", { coupons });
+  } catch (error) {
+    res.render('/error')
+  }
+}
+
+
+const addCoupon = async (req, res) => {
+  try {
+    const { couponCode, description, discount, maxDiscount, minAmount, expirationDate } = req.body;
+    const newCoupon = new Coupon({
+      couponCode,
+      description,
+      discount,
+      maxDiscount,
+      minAmount,
+      expirationDate,
+      isListed: true
+    });
+    await newCoupon.save();
+
+    res.json({ message: 'Coupon added successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+const editCouponPage = async (req, res) => {
+  try {
+    console.log('params id', req.params.id)
     const coupon = await Coupon.findById(req.params.id);
 
     if (!coupon) {
@@ -58,22 +58,22 @@ const editCouponPage = async(req, res)=>{
   }
 }
 
-const editCoupon =async(req, res)=>{
-  try{
-    
+const editCoupon = async (req, res) => {
+  try {
+
     const couponId = req.params.id;
     const updates = req.body;
 
-    const updatedCoupon = await Coupon.findByIdAndUpdate(couponId,updates)
- 
-    if(updatedCoupon){
-      return res.json({success: true})
-    }else{
-      return res.status(400).json('error',{message: 'Coupon not found'})
+    const updatedCoupon = await Coupon.findByIdAndUpdate(couponId, updates)
+
+    if (updatedCoupon) {
+      return res.json({ success: true })
+    } else {
+      return res.status(400).json('error', { message: 'Coupon not found' })
     }
-  }catch(error){
+  } catch (error) {
     console.error(err);
-    return res.status(500).json({error: "internal server error"})
+    return res.status(500).json({ error: "internal server error" })
   }
 }
 const listCoupon = async (req, res) => {
@@ -104,13 +104,13 @@ const unListCoupon = async (req, res) => {
   }
 };
 
-  module.exports = {
-    couponList,
-    addCoupon,
-    coupons,
-    editCouponPage,
-    editCoupon,
-    unListCoupon,
-    listCoupon
-   
-  }
+module.exports = {
+  couponList,
+  addCoupon,
+  coupons,
+  editCouponPage,
+  editCoupon,
+  unListCoupon,
+  listCoupon
+
+}

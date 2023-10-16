@@ -8,13 +8,13 @@ const category = async (req, res) => {
         const page = req.query.page || 1;
 
         const categories = await Category.find()
-        .sort({ createdAt: -1 })
-        .skip((page - 1) * perPage)
-        .limit(perPage);
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * perPage)
+            .limit(perPage);
         const totalCategories = await Category.countDocuments();
         res.render('admin/adminCategory', { categories, currentPage: page, totalPages: Math.ceil(totalCategories / perPage) });
     } catch (error) {
-       res.render('/error')
+        res.render('/error')
     }
 }
 const addCategory = async (req, res) => {
@@ -93,7 +93,7 @@ const unListCategory = async (req, res) => {
 
         res.redirect(302, '/admin/addcategory')
     } catch (error) {
-       res.render('/error')
+        res.render('/error')
     }
 }
 const listCategory = async (req, res) => {
