@@ -296,7 +296,7 @@ const loadHome = async (req, res) => {
     try {
 
         const userId = req.session.user_id;
-        const products = await Product.find({ isListed: true }).sort({ createdAt: -1 }).limit(8);;
+        const products = await Product.find({ isListed: true }).sort({ createdAt: -1 }).limit(8);
         const categories = await Category.find();
         const user = await User.findById(userId);
 
@@ -310,12 +310,10 @@ const loadHome = async (req, res) => {
 
             });
         } else {
-            // console.log('produd',products)
+            console.log('produd',userLoggedIn)
             res.render("users/home", {
                 products,
-                userLoggedIn,
-                categories,
-                user,
+               
 
             });
         }

@@ -19,19 +19,17 @@ const logAdmin = async (req, res) => {
 // verify login
 const verifyAdminLogin = async (req, res) => {
 
-    console.log('adminlogin is work ')
     try {
         const email = req.body.email;
         const password = req.body.password;
-
         const adminData = await User.findOne({ email: email, is_admin: true });
-
         if (adminData) {
 
             const passwordMatch = await bcrypt.compare(password, adminData.password);
             if (passwordMatch) {
+
                 if (adminData.is_admin === false) {
-                    res.json({ success: false, email: "please verify your mail." });
+                    res.json({ success: false, message: "please verify your mail." });
                 } else {
 
                     req.session.admin_id = adminData._id;
@@ -39,10 +37,10 @@ const verifyAdminLogin = async (req, res) => {
                     res.json({ success: true });
                 }
             } else {
-                res.json({ success: false, password: "password is wrong" })
+                res.json({ success: false, message: "password is wrong" })
             }
         } else {
-            res.json({ success: false, email: "Email  is incorrect" })
+            res.json({ success: false, message: "Email  is incorrect" })
         }
     } catch (error) {
         console.log(error.message)

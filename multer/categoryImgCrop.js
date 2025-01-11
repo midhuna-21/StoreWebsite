@@ -4,7 +4,7 @@ const fs = require('fs');
 module.exports = {
     crop: async (req) => {
         console.log("call comes");
-        if (req.file) { // Check if req.file is defined
+        if (req.file) { 
             const inputFilePath = req.file.path;
 
             try {
@@ -16,7 +16,7 @@ module.exports = {
                     })
                     .toBuffer();
 
-                fs.writeFileSync(inputFilePath, processedImageBuffer); // Use synchronous writeFile to ensure proper ordering
+                fs.writeFileSync(inputFilePath, processedImageBuffer); 
 
                 console.log("Image cropped and saved successfully to ", inputFilePath);
             } catch (error) {

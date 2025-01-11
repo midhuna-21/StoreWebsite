@@ -1,197 +1,179 @@
-<%- include('../layouts/header.ejs') %>
-    <style>
-        .content-main {
-            /* Set the background image */
-            background-image: url('/images/logui2.jpg');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
-            /* Adjust background properties as needed */
-            background-size: cover;
-            /* Cover the entire section */
-            background-position: center;
-            /* Center the background image */
-            background-repeat: no-repeat;
-            /* Prevent image repetition */
-            max-width: 100%;
-            max-height: 100%;
-            height: 100vh;
-            /* Add additional styling */
-            padding-top: 150px;
-            /* Increase the top padding */
-            padding-bottom: 100px;
-            /* Increase the bottom padding */
-            padding-left: 20px;
-            /* Optional: Adjust left padding if needed */
-            padding-right: 20px;
-
-        }
-
-        * {
-            margin: 0;
-
-        }
-
-        .brand-header {
-            text-align: center;
-            font-family: CustomFont, sans-serif;
-            /* Use the custom font or a fallback sans-serif font */
-        }
-
-        .slogan {
-            text-align: center;
-            font-style: italic;
-            color: #555;
-            /* Customize the color to your preference */
-        }
-
-        .login-title {
-            text-align: center;
-        }
-
-        .brand-container {
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-login {
-            margin-top: 20px;
-
-            background-color: rgba(161, 153, 149, 0.6);
-            margin-bottom: 30px;
-        }
-    </style>
-
-    <section class="content-main">
-        <div class="brand-container">
-            <div class="brand-header" style="color: white; font-size: 20px; ">
-                <!-- Brand name content -->
-                <h3><span>Halang.</span></h3>
-            </div>
-        </div>
-
-        <div class="card mx-auto card-login ">
-            <form name="register" method="post" id="registerForm">
-                <div class="card-body">
-                    <h4 class="card-title"
-                        style="color: rgb(53, 48, 48); font-family: sans-serif; font-size: 24px; font-weight: bold; text-align: center; text-transform: uppercase;">
-                        Sign Up</h4>
-                    <div class="mb-3">
-                        <input class="form-control" name="name" placeholder="Username " type="text" autocomplete="off">
-                        <p id="nameError" style="color: red;" class="error-message"></p>
-                    </div>
-                    <div class="mb-3">
-                        <input class="form-control" name="email" placeholder="Email" type="text">
-                        <p id="emailError" style="color: red;" class="error-message ">
-                        </p>
-                    </div>
-                    <div class="mb-3">
-                        <input class="form-control" name="tel" placeholder="Phone number" type="text">
-                        <p id="telError" style="color: red;" class="error-message "></p>
-                    </div>
-                    <div class="mb-3">
-                        <input class="form-control" name="password" placeholder="Password" type="password"
-                            autocomplete="new-password">
-                        <p id="passwordError" style="color: red;" class="error-message"></p>
-                    </div>
-                    <div class="mb-4">
-                        <button type="submit" class="btn btn-dark w-100" style="background-color:  rgb(53, 48, 48)">
-                            Sign up
-                        </button>
-                    </div>
-                    <p class="text-center mb-4" style="color: black;  ">Already have an account? <a href="/userlogin"
-                            style="color: rgb(1, 1, 105);">Login</a></p>
+</head>
+<body class="bg-gray-100">
+    
+    <section 
+    class="min-h-screen flex items-center justify-center" 
+    style="background-image: url('images/singup.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    
+    <div id="toast-container" class="fixed bottom-0 right-0 p-4 space-y-2 "></div>
+    <div class=" p-8 w-full max-w-md">
+        <p class="ml-4 font-serif text-black text-md mt-4 mb-4">
+            Already have an account?
+            <a href="/userlogin" class="text-blue-800 hover:underline font-bold">Login</a>
+        </p>
+        <form id="registerForm" name="register" method="post">
+            <!-- Username Field -->
+            <div class="mb-2">
+                <div class="relative ">
+                    <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="name"
+                        class="pl-10 w-full p-3 border border-gray-300 rounded-full shadow-md text-gray-700 focus:ring-1 focus:ring-gray-400 focus:outline-none"
+                        autocomplete="off"
+                    />
                 </div>
-            </form>
-        </div>
-    </section>
+                <p id="nameError" class="text-red-500 text-sm mt-1 ml-8 h-4"></p>
+            </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        const emailErr = document.querySelector('#emailError');
-        const telErr = document.querySelector('#telError');
-        const nameErr = document.querySelector('#nameError');
-        const passwordErr = document.querySelector('#passwordError');
+            <!-- Email Field -->
+            <div class="mb-2">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="email"
+                        class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none"
+                    />
+                </div>
+                <p id="emailError" class="text-red-700 font-bold text-sm mt-1 ml-8 h-4"></p>
+            </div>
 
-        $(document).ready(function () {
-            $('#registerForm').submit(function (event) {
-                event.preventDefault();
+            <!-- Phone Number Field -->
+            <div class="mb-2">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                        <i class="fas fa-phone-alt"></i>
+                    </span>
+                    <input
+                        type="text"
+                        name="tel"
+                        placeholder="phone number"
+                        class="pl-10 w-full p-3 border border-gray-300 rounded-full shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none"
+                    />
+                </div>
+                <p id="telError" class="text-red-500 text-sm mt-1 ml-8 h-4"></p>
+            </div>
 
-                emailErr.textContent = '';
-                telErr.textContent = '';
-                nameErr.textContent = '';
-                passwordErr.textContent = '';
+            <div class="mb-4">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focuse:ring-1 focus:ring-gray-400 focus:outline-none"
+                        autocomplete="new-password"
+                    />
+                </div>
+                <p id="passwordError" class="text-red-500 text-sm mt-1 ml-8 h-4"></p>
+            </div>
 
-                const name = $('input[name="name"]').val().trim();
-                const email = $('input[name="email"]').val().trim();
-                const tel = $('input[name="tel"]').val().trim();
-                const password = $('input[name="password"]').val().trim();
+            <!-- Submit Button -->
+            <button
+                type="submit"
+                class="w-full py-3 bg-blue-700 text-white rounded-full font-medium shadow-md hover:bg-blue-800 focus:outline-none"
+            >
+                Sign up
+            </button>
 
-                // Validation rules
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const telRegex = /^[6789]\d{9}$/;
-                const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+            <!-- Login Link -->
+        </form>
+    </div>
+</section>
 
-                let valid = true;
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-                if (!name) {
-                    valid = false;
-                    nameErr.textContent = 'Please enter a username';
-                } else if (!name.match(/^[a-z ,.'-]+$/i)) {
-                    valid = false;
-                    nameErr.textContent = 'Username cannot contain characters '
-                }
-                if (!email) {
-                    valid = false;
-                    emailErr.textContent = 'Please enter email';
-                }
-                else if (!email.match(emailRegex)) {
-                    valid = false;
-                    emailErr.textContent = 'Please enter a valid email address';
-                }
+<script>
+    $(document).ready(function () {
+        $('#registerForm').submit(function (event) {
+            event.preventDefault();
 
-                if (!tel) {
-                    valid = false;
-                    telErr.textContent = 'please enter Phone number';
-                }
-                else if (!tel.match(telRegex)) {
-                    valid = false;
-                    telErr.textContent = 'Please enter a valid phone number';
-                }
+            // Clear previous errors
+            $('#nameError').text('');
+            $('#emailError').text('');
+            $('#telError').text('');
+            $('#passwordError').text('');
 
-                if (!password) {
-                    valid = false;
-                    passwordErr.textContent = 'Please enter password';
-                }
-                else if (password.length < 6 && !password.match(passwordRegex)) {
-                    valid = false;
-                    passwordErr.textContent = 'Password must be strong';
-                }
+            // Form validation logic
+            const name = $('input[name="name"]').val().trim();
+            const email = $('input[name="email"]').val().trim();
+            const tel = $('input[name="tel"]').val().trim();
+            const password = $('input[name="password"]').val().trim();
 
+            let valid = true;
 
-                if (valid) {
-                    var formData = $(this).serialize();
-                    $.ajax({
-                        url: '/register',
-                        method: 'POST',
-                        data: formData,
-                        dataType: 'JSON',
-                        success: function (response) {
-                            if (response.success) {
-                                window.location.href = '/otp';
-                            } else if (!response.success) {
+            if (!name) {
+             valid = false;
+             showToast('Please enter a username');
+         }
 
-                                emailErr.textContent = response?.email;
-                                telErr.textContent = response?.tel;
-                            }
-                        },
-                        error: function (error) {
-                            console.log('Error', error)
-                        }
-                    });
-                }
-            });
+         if (!email) {
+             valid = false;
+             showToast('Please enter an email');
+         }
+
+         if (!tel) {
+             valid = false;
+             showToast('Please enter a phone number');
+         }
+
+         if (!password) {
+             valid = false;
+             showToast('Please enter a password');
+         }
+
+            if (valid) {
+                $.ajax({
+                    url: '/register',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = '/otp';
+                        } else {
+                         if (response.email) showToast(response.email);
+                         if (response.tel) showToast(response.tel);
+                     }
+                    },
+                    error: function (error) {
+                        console.error('Registration error:', error);
+                    }
+                });
+            }
         });
-    </script>
+        function showToast(message) {
+         const toast = $('<div class="toast-message bg-red-600 text-white p-4 rounded-lg shadow-md mb-2">')
+             .text(message)
+             .fadeIn()
+             .delay(3000)
+             .fadeOut(function () {
+                 $(this).remove();
+             });
 
-    <%- include('../layouts/footer.ejs') %>
+         $('#toast-container').append(toast);
+     }
+    });
+</script>
+
+</body>
+</html>

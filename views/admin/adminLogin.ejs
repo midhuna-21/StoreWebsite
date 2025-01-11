@@ -1,113 +1,57 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Furniture site</title>
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <link rel="icon" href="/assets/imgs/theme/Black White Logo.png">
-    <link href="/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
 </head>
-<style>
-    .content-main {
-        /* Set the background image */
-        background-image: url('/images/logui2.jpg');
-
-        /* Adjust background properties as needed */
-        background-size: cover;
-        /* Cover the entire section */
-        background-position: center;
-        /* Center the background image */
-        background-repeat: no-repeat;
-        /* Prevent image repetition */
-        max-width: 100%;
-        max-height: 100%;
-        height: 100vh;
-        /* Add additional styling */
-        padding-top: 150px;
-        /* Increase the top padding */
-        padding-bottom: 100px;
-        /* Increase the bottom padding */
-        padding-left: 20px;
-        /* Optional: Adjust left padding if needed */
-        padding-right: 20px;
-
-    }
-
-    * {
-        margin: 0;
-
-    }
-
-    .brand-header {
-        text-align: center;
-        font-family: CustomFont, sans-serif;
-        /* Use the custom font or a fallback sans-serif font */
-    }
-
-    .slogan {
-        text-align: center;
-        font-style: italic;
-        color: #555;
-        /* Customize the color to your preference */
-    }
-
-    .login-title {
-        text-align: center;
-    }
-
-    .brand-container {
-        height: 65px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .card-login {
-        margin-top: 20px;
-
-        background-color: rgba(161, 153, 149, 0.6);
-        margin-bottom: 30px;
-    }
-</style>
-
-<body>
-    <section class="content-main">
-        <div class="brand-container">
-            <div class="brand-header" style="color: white; font-size: 20px; ">
-                <!-- Brand name content -->
-                <h3><span>Halang.</span></h3>
-            </div>
-        </div>
-
-        <div class="card mx-auto card-login " style="background-color: rgba(255, 255, 255, 0.6); ">
-
-            <form action="/admin/login" id="loginForm">
+<body class="bg-gray-100">
+    <section 
+    class="min-h-screen flex items-center justify-center" 
+    style="background-image: url('images/singup.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    
+    <div id="toast-container" class="fixed bottom-0 right-0 p-4 space-y-2 text-red-500"></div>
+    
+   
+    <div class=" p-8 w-full max-w-md">
+        <form action="/admin/login" id="loginForm">
                 <div class="card-body">
-                    <h4 class="card-title mb-4"
-                        style="color: rgb(53, 48, 48); font-family: sans-serif; font-size: 24px; font-weight: bold; text-align: center; text-transform: uppercase;">
-                        Sign in</h4>
-                    <div class="mb-3">
-                        <input class="form-control" name="email" placeholder="Email" type="text" autocomplete="off">
-                        <p id="emailError" class="error-message" style="color: red;"></p>
-                    </div>
-                    <div class="mb-3">
-                        <input class="form-control" name="password" placeholder="Password" type="password"
-                            autocomplete="new-password">
-                        <p id="passwordError" class="error-message" style="color: red;"></p>
-                    </div>
-                    <div class="mb-3">
-                        <!-- <a href="#" class="text-center " style="color: black;">Forgot password?</a> -->
-                    </div>
-                    <div class="mb-4">
-                        <button type="button" onclick="submitForm()" class="btn btn-primary w-100 bg-dark"
-                            style="background-color:  rgb(53, 48, 48)"> sign in </button>
+                        <div class="mb-6">
+                              <div class="relative">
+                                  <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                                      <i class="fas fa-envelope"></i>
+                                  </span>
+                                  <input
+                                      type="email"
+                                      name="email"
+                                      placeholder="email"
+                                      class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none"
+                                  />
+                              </div>
+                          </div>
+      
+                          <!-- Password Field -->
+                          <div class="mb-6">
+                              <div class="relative">
+                                  <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                                      <i class="fas fa-lock"></i>
+                                  </span>
+                                  <input
+                                      type="password"
+                                      name="password"
+                                      placeholder="password"
+                                      class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focuse:ring-1 focus:ring-gray-400 focus:outline-none"
+                                      autocomplete="new-password"
+                                  />
+                              </div>
+                          </div>
+
+                    <!-- Submit Button -->
+                    <div class="mb-6">
+                        <button type="button" onclick="submitForm()"  class="w-full py-3 bg-blue-700 text-white font-medium rounded-full shadow-lg hover:bg-blue-800 focus:outline-none"> Sign in </button>
                     </div>
                 </div>
             </form>
@@ -118,7 +62,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function submitForm() {
-            if (validateform()) { // Assuming validateform() function is defined correctly
+            if (validateform()) { 
                 const email = $("input[name='email']").val().trim();
                 const password = $("input[name='password']").val().trim();
 
@@ -131,11 +75,12 @@
                     },
                     success: function (response) {
                         if (response.success) {
-
                             window.location.href = "/admin/dashboard";
                         } else {
-                            $("#emailError").text(response.email);
-                            $("#passwordError").text(response.password);
+                            // $("#emailError").text(response.email);
+                            showToast(response.message);    
+
+                            // $("#passwordError").text(response.password);
                         }
                     },
                     error: function (error) {
@@ -150,26 +95,42 @@
                 let password = passwordInput.value.trim();
                 let isValid = true;
 
-                document.getElementById("emailError").textContent = "";
-                document.getElementById("passwordError").textContent = "";
+                // document.getElementById("emailError").textContent = "";
+                // document.getElementById("passwordError").textContent = "";
 
-                if (email === "") {
-                    document.getElementById("emailError").textContent = "please enter email";
+                if (email === "" && password=="") {
+                    // document.getElementById("emailError").textContent = "please enter email";
+                   return showToast("please enter email and password")
                     isValid = false;
-                } else {
+                }else if(email === ""){
+                    return showToast("please enter email")
+                }
+                 else {
                     let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                     if (!emailRegex.test(email)) {
-                        document.getElementById("emailError").textContent = "please enter a valid email";
+                        // document.getElementById("emailError").textContent = "please enter a valid email";
+                        return showToast("please enter a valid email")
                         isValid = false;
                     }
                 }
                 if (password === "") {
-                    document.getElementById("passwordError").textContent = "please enter password";
+                    // document.getElementById("passwordError").textContent = "please enter password";
+                    showToast("please enter password")
                     isValid = false;
                 }
                 return isValid;
             }
-
+            function showToast(message) {
+                const toast = $('<div class="toast-message bg-red-600 text-white p-4 rounded-lg shadow-md mb-2">')
+                    .text(message)
+                    .fadeIn()
+                    .delay(3000)
+                    .fadeOut(function () {
+                        $(this).remove();
+                    });
+    
+                $('#toast-container').append(toast);
+            }
         }
     </script>
     <script src="/assets/js/vendors/jquery-3.6.0.min.js"></script>

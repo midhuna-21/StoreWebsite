@@ -185,16 +185,16 @@ const renderProductsPage = async (req, res, queryConditions) => {
 
         if (categoryname !== 'all') {
             const selectedCategory = categories.find((cat) => cat.categoryname === categoryname);
-            console.log('seel', selectedCategory);
+            
             if (!selectedCategory) {
-                console.log('Category not found');
+            
                 return res.render('users/products', { categories, products: [], categoryname });
             }
 
             queryConditions.categoryname = selectedCategory.categoryname;
         }
         totalProductsCount = await Product.countDocuments(queryConditions);
-
+  
         products = await Product.find(queryConditions)
             .sort({ date: -1 })
             .skip((page - 1) * itemsPerPage)
@@ -239,7 +239,6 @@ const searchProducts = async (req, res) => {
             categoryname: { $regex: new RegExp(searchQuery, 'i') },
         };
 
-        // Call the common renderProductsPage function with search results
         await renderProductsPage(req, res, queryConditions);
     } catch (error) {
         console.error(error.message);
@@ -249,7 +248,8 @@ const searchProducts = async (req, res) => {
 // product Details
 const productDetails = async (req, res) => {
     try {
-        const products = await Product.find({ _id: req.query.productid })
+        const products = await Product.find({ _id: req.query.id })
+        console.log(products,'prout')
         res.render('users/productdetail', { products })
     } catch (error) {
         console.log(error.message);

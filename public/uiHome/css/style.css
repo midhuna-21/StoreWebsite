@@ -31,7 +31,7 @@ a {
     font-weight: 600; }
 
 .custom-navbar {
-  background: #3e3131  !important;
+  background: white  !important;
   padding-top: 20px;
   padding-bottom: 20px; }
   .custom-navbar .navbar-brand {
@@ -122,7 +122,7 @@ a {
       .hero h1 {
         font-size: 54px; } }
   .hero p {
-    color: rgba(255, 255, 255, 0.5);
+    color:rgba(255, 255, 255, 0.5);
     margin-bottom: 30px;
    }
   .hero .hero-img-wrap {

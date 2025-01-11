@@ -12,7 +12,6 @@ const { Readable } = require('stream');
 
 const orderDetails = async (req, res) => {
   try {
-
     const orderId = req.params.orderId;
     const userId = req.session.user_id;
     const products = await Product.find()
@@ -510,7 +509,6 @@ const getDashboard = async (req, res) => {
   try {
 
     const ordersData = await calculateDeliveredOrderTotal()
-    console.log(ordersData);
     const orders = ordersData[0]
     const categorySales = await calculateCategorySales()
     const salesData = await calculateDailySales()
@@ -521,20 +519,20 @@ const getDashboard = async (req, res) => {
     const codPay = await calculateCodOrderCountAndTotal()
     const latestorders = await getLatestOrders()
 
-    //    console.log(ordersData,"get dashBorde rsData")
-    //  console.log(orders,"get dashBordorders")
-    //    console.log(categorySales,"get dashBorders categorySales")
-    //    console.log(salesData,"get dashBorders  salesData")
-    //    console.log(salesCount,"get dashBordersData salesCount")
-    //    console.log(categoryCount ,"get dashBorders categoryCount ")
-    //    console.log(productsCount,"get dashBorders productsCount")
-    //    console.log(onlinePay,"get dashBord onlinePay")
-    //    console.log(codPay,"get dashBord codPay")
-    //    console.log(latestorders,"get dashBord latestorders")
-    //    console.log("productsCount:", productsCount);
-    //    console.log("categoryCount:", categoryCount);
-    //   console.log("onlinePay.totalPriceSum:", onlinePay[0].totalPriceSum);
-    //   console.log("onlinePay.count:", onlinePay[0].count);
+       console.log(ordersData,"get dashBorde rsData")
+     console.log(orders,"get dashBordorders")
+       console.log(categorySales,"get dashBorders categorySales")
+       console.log(salesData,"get dashBorders  salesData")
+       console.log(salesCount,"get dashBordersData salesCount")
+       console.log(categoryCount ,"get dashBorders categoryCount ")
+       console.log(productsCount,"get dashBorders productsCount")
+       console.log(onlinePay,"get dashBord onlinePay")
+       console.log(codPay,"get dashBord codPay")
+       console.log(latestorders,"get dashBord latestorders")
+       console.log("productsCount:", productsCount);
+       console.log("categoryCount:", categoryCount);
+      console.log("onlinePay.totalPriceSum:", onlinePay[0].totalPriceSum);
+      console.log("onlinePay.count:", onlinePay[0].count);
     console.log('uasername', latestorders)
 
     res.render('admin/adminDashboard', {
@@ -641,7 +639,7 @@ const getOrderInvoice = async (req, res) => {
 
     easyinvoice.createInvoice(data, async (result) => {
       //The response will contain a base64 encoded PDF file
-      console.log(result, "jjj11", data, "pdf11");
+     
       if (result && result.pdf) {
         await fs.writeFileSync("invoice.pdf", result.pdf, "base64");
 

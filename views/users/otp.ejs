@@ -1,90 +1,41 @@
-<%- include('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+</head>
 
-    <style>
-        .content-main {
-            /* Set the background image */
-            background-image: url('/images/logui2.jpg');
+<body class="bg-gray-100">
+    <section 
+        class="min-h-screen flex items-center justify-center" 
+        style="background-image: url('images/singup.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        
+        <div id="toast-container" class="fixed bottom-0 right-0 p-4 space-y-2 text-red-500"></div>
 
-            /* Adjust background properties as needed */
-            background-size: cover;
-            /* Cover the entire section */
-            background-position: center;
-            /* Center the background image */
-            background-repeat: no-repeat;
-            /* Prevent image repetition */
-            max-width: 100%;
-            max-height: 100%;
-            height: 100vh;
-            /* Add additional styling */
-            padding-top: 150px;
-            /* Increase the top padding */
-            padding-bottom: 100px;
-            /* Increase the bottom padding */
-            padding-left: 20px;
-            /* Optional: Adjust left padding if needed */
-            padding-right: 20px;
+        <div class="p-8 w-full max-w-md ">
+            <p class="text-green-800 text-center text-md font-serif mb-3 ml-4">Check your email, OTP has been sent
+            </p>
 
-        }
-
-        * {
-            margin: 0;
-
-        }
-
-        .brand-header {
-            text-align: center;
-            font-family: CustomFont, sans-serif;
-            /* Use the custom font or a fallback sans-serif font */
-        }
-
-        .slogan {
-            text-align: center;
-            font-style: italic;
-            color: #555;
-            /* Customize the color to your preference */
-        }
-
-        .login-title {
-            text-align: center;
-        }
-
-        .brand-container {
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-login {
-            margin-top: 20px;
-
-            background-color: rgba(161, 153, 149, 0.6);
-            margin-bottom: 30px;
-        }
-    </style>
-    <section class="content-main">
-        <div class="card mx-auto card-login" style="background-color: rgba(255, 255, 255, 0.6); ">
             <form id="otp" method="post">
-
                 <div class="card-body">
-                    <!-- <h4 class="card-title mb-4" style="text-align: center;">OTP</h4> -->
-
                     <div class="mb-3">
-                        <h4 style="color: rgb(53, 48, 48); ">Enter OTP:</h4>
-                        <p style="color: rgb(53, 48, 48); ">Check your email, OTP has been sent.</p>
-                        <input class="form-control" name="otp" placeholder="Enter your OTP" type="text">
-                        <p id="otpError" style="color: red;" class="error-message"></p>
+                      
+                        <input class="w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none" name="otp" placeholder="Enter your OTP" type="text">
+                        <p id="otpError" class="error-message text-red-500 mt-2"></p>
                     </div>
-                    <span class="float-end" id="otp-counter"></span>
-                    <span class="float-end" id="resend-btn" style="color: rgb(1, 1, 105);" style="cursor: pointer;"
-                        hidden>Resend OTP</span>
+
+                    <span id="otp-counter" class="text-gray-600 float-right"></span>
+                    <span id="resend-btn" class="float-right text-blue-600 cursor-pointer" hidden>Resend OTP</span>
+
                     <div class="mb-4">
-                        <button type="submit" class="btn btn-primary w-100 " style="background-color:  rgb(53, 48, 48)">
+                        <button type="submit" class="w-full py-3 bg-blue-700 text-white font-medium rounded-full shadow-lg hover:bg-blue-800 focus:outline-none">
                             Verify OTP
                         </button>
-
                     </div>
-
+                </div>
             </form>
         </div>
     </section>

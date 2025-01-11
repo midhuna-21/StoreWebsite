@@ -11,7 +11,7 @@ async function updateWalletBalance(userId, amount, transactionType) {
         userId,
         balance: 0, 
         transactions: [], 
-      });
+      });0
     }
 
     if (transactionType === 'debit') {

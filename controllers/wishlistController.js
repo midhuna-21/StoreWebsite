@@ -7,7 +7,7 @@ const addToWishlist = async (req, res) => {
 
         const userId = req.session.user_id;
         const productId = req.params.productId;
-        console.log('pri', productId)
+      
         if (!req.session.user_id) {
             return res.json({ user: false });
         } else {

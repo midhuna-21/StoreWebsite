@@ -15,7 +15,6 @@ user_route.get('/userlogin', auth.login, userController.loadLogin)
 user_route.post('/home', userController.verifyLogin)
 user_route.get('/', userController.loadHome);
 
-
 user_route.get('/email', userController.emailPage);
 user_route.post('/email', userController.resetPasswordemail)
 user_route.get('/newPassword', userController.resetPassword)

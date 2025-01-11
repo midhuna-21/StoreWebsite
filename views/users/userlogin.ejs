@@ -1,121 +1,83 @@
-<%- include('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
-    <style>
-        .content-main {
-            /* Set the background image */
-            background-image: url('/images/logui2.jpg');
-
-            /* Adjust background properties as needed */
-            background-size: cover;
-            /* Cover the entire section */
-            background-position: center;
-            /* Center the background image */
-            background-repeat: no-repeat;
-            /* Prevent image repetition */
-            max-width: 100%;
-            max-height: 100%;
-            height: 100vh;
-            /* Add additional styling */
-            padding-top: 150px;
-            /* Increase the top padding */
-            padding-bottom: 100px;
-            /* Increase the bottom padding */
-            padding-left: 20px;
-            /* Optional: Adjust left padding if needed */
-            padding-right: 20px;
-
-        }
-
-        * {
-            margin: 0;
-
-        }
-
-        .brand-header {
-            text-align: center;
-            font-family: CustomFont, sans-serif;
-            /* Use the custom font or a fallback sans-serif font */
-        }
-
-        .slogan {
-            text-align: center;
-            font-style: italic;
-            color: #555;
-            /* Customize the color to your preference */
-        }
-
-        .login-title {
-            text-align: center;
-        }
-
-        .brand-container {
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-login {
-            margin-top: 20px;
-
-            background-color: rgba(161, 153, 149, 0.6);
-            margin-bottom: 30px;
-        }
-    </style>
-
-    <section class="content-main">
-        <div class="brand-container">
-            <div class="brand-header" style="color: white; font-size: 20px; ">
-                <!-- Brand name content -->
-                <h3><span>Halang.</span></h3>
-            </div>
-        </div>
-
-
-        <div class="card mx-auto card-login">
+</head>
+<body class="bg-gray-100">
+    <section 
+    class="min-h-screen flex items-center justify-center" 
+    style="background-image: url('images/singup.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    
+    <div id="toast-container" class="fixed bottom-0 right-0 p-4 space-y-2 text-red-500"></div>
+    
+    <div class=" p-8 w-full max-w-md">
+        <p class="text-gray-800 text-md font-serif mb-3 ml-4">
+            Don't have an account? 
+            <a href="/register" class="text-blue-900 hover:underline font-bold">Sign up</a>
+        </p>    
             <form id="loginForm">
-                <div class="card-body">
-                    <div class="login-title">
-                        <h4 class="signin-title"
-                            style="color: rgb(53, 48, 48); font-family: sans-serif; font-size: 24px; font-weight: bold; text-align: center; text-transform: uppercase;">
-                            Sign in</h4>
+                <div class="card-body"> 
+                  <div class="mb-2">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="email"
+                                class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none"
+                            />
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <input class="form-control" name="email" placeholder="Email" type="text" autocomplete="off"
-                            autocorrect="off" autocapitalize="off">
-                        <p id="emailError" style="color: red;" class="error-message"></p>
-                    </div> <!-- form-group// -->
-                    <div class="mb-3">
-                        <input class="form-control" name="password" placeholder="Password" type="password"
-                            autocomplete="new-password">
-                        <p id="passwordError" style="color: red;" class="error-message"></p>
-                    </div> <!-- form-group// -->
-                    <div id="blockedMessage" style="color: red;" class="error-message"></div>
-                    <div class="mb-3">
-                        <!-- Add a "Forgot Password" link or button -->
-                        <a href="/email" style="color: rgb(1, 1, 105);">Forgot Password?</a>
+                    <!-- Password Field -->
+                    <div class="mb-4">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                                class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focuse:ring-1 focus:ring-gray-400 focus:outline-none"
+                                autocomplete="new-password"
+                            />
+                        </div>
                     </div>
-                    <div class="mb-3">
-                    </div> <!-- form-group form-check .// -->
-                    <div id="successMessage" style="display: none;">
+
+
+                    <!-- Forgot Password Link -->
+                    <div class="mb-4 text-right">
+                        <a href="/email" class="text-blue-900 mr-3 font-medium hover:underline text-sm">Forgot Password?</a>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="text-green-500 text-sm mb-4 hidden">
                         Login successful
                     </div>
 
-
-                    <div class="mb-4">
-                        <button type="submit" class="btn btn-primary w-100" style="background-color:  rgb(53, 48, 48)">
-                            sign in
+                    <!-- Submit Button -->
+                    <div class="mb-6">
+                        <button 
+                            type="submit" 
+                            class="w-full py-3 bg-blue-700 text-white font-medium rounded-full shadow-lg hover:bg-blue-800 focus:outline-none">
+                            Sign in
                         </button>
-                    </div> <!-- form-group// -->
-                    <p class="text-center mb-4" style="color: black;">Don't have account? <a href="/register"
-                            style="color: rgb(1, 1, 105);">Sign up</a></p>
+                    </div>
 
+    
                 </div>
-
             </form>
         </div>
     </section>
+
     <script>
         window.onload = function () {
             var emailInput = document.querySelector('input[name="email"]');
@@ -131,29 +93,21 @@
         $(document).ready(function () {
             $('#loginForm').submit(function (event) {
                 event.preventDefault();
-
+    
                 var email = $('input[name="email"]').val().trim();
-                var password = $('input[name= "password"]').val().trim();
+                var password = $('input[name="password"]').val().trim();
+                
                 if (!email && !password) {
-
-                    $('#emailError').text('Please enter email');
-                    $('#passwordError').text('Please enter password');
+                    showToast('Please enter both email and password');
                     return;
                 } else if (!email) {
-
-                    $('#emailError').text('Please enter email');
+                    showToast('Please enter your email');
+                    return;
+                } else if (!password) {
+                    showToast('Please enter your password');
                     return;
                 }
-
-                else if (!password) {
-
-                    $('#passwordError').text('please enter password');
-                    return;
-                }
-                $('#emailError').text('');
-                $('#passwordError').text('');
-                $('#blockedMessage').text('');
-
+    
                 var formData = $(this).serialize();
                 $.ajax({
                     type: 'POST',
@@ -165,27 +119,38 @@
                             window.location.href = '/';
                         } else {
                             if (response.message === 'Your account is blocked from admin.') {
-                                $('#blockedMessage').text(response.message);
+                                showToast(response.message);
                             } else if (response.message === 'please verify your email') {
-                                $('#emailError').text(response.message);
-                            } else if (response.message === 'Email is in incorrect') {
-                                $('#emailError').text(response.message);
-                            } else if (response.message === 'Password is in incorrect') {
-
-                                $('#passwordError').text(response.message)
+                                showToast(response.message);
+                            } else if (response.message === 'Email is incorrect') {
+                                showToast(response.message);
+                            } else if (response.message === 'Password is incorrect') {
+                                showToast(response.message);
                             } else {
-                                console.error(response.message)
+                                console.error(response.message);
                             }
                         }
                     },
                     error: function (xhr, status, error) {
+                        showToast('An error occurred, please try again later');
                         console.error(error);
-
                     }
                 });
             });
+    
+            function showToast(message) {
+                const toast = $('<div class="toast-message bg-red-600 text-white p-4 rounded-lg shadow-md mb-2">')
+                    .text(message)
+                    .fadeIn()
+                    .delay(3000)
+                    .fadeOut(function () {
+                        $(this).remove();
+                    });
+    
+                $('#toast-container').append(toast);
+            }
         });
     </script>
-
-
-    <%- include('../layouts/footer.ejs') %>
+    
+</body>
+</html>

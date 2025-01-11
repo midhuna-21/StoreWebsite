@@ -184,7 +184,7 @@ const checkout = async (req, res) => {
         res.status(500).send('An error occurred while processing the checkout.');
     }
 };
-const couponGet = async (req, res) => {
+const  couponGet = async (req, res) => {
     try {
 
         const calculateTotalPrice = req.session.calculateTotalPrice;
