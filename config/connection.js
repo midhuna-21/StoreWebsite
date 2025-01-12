@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 
 const connectDB = () =>{
-    return mongoose.connect('mongodb+srv://midhunaradhakrishnan31:idMnKyOFd2lMfcPn@cluster0.wg0fa.mongodb.net/', {
-        useNewUrlParser : true,
-        useUnifiedTopology: true,
-    })
+    return mongoose.connect('mongodb+srv://midhunaradhakrishnan31:idMnKyOFd2lMfcPn@cluster0.wg0fa.mongodb.net/')
     .then(() =>{
         console.log("mongodb connected");
     })
