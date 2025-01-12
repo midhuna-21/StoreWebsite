@@ -12,7 +12,7 @@ const userRouter = require("./routes/userRoute");
 const adminRouter = require("./routes/adminRoute");
 
 const app = express();
-
+connectDB();
 app.use(nocache());
 app.use(
     session({
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-connectDB();
+
    
 app.use("/admin", adminRouter);
 app.use("/", userRouter);
