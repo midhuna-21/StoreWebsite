@@ -11,7 +11,7 @@ user_route.get('/register', auth.login, userController.loadRegister);
 user_route.post('/register', userController.insertUser);
 user_route.get('/otp', auth.login, userController.otp)
 user_route.post('/verifyotp', userController.verifyOtp);
-user_route.get('/userlogin', auth.login, userController.loadLogin)
+user_route.get('/login', auth.login, userController.loadLogin)
 user_route.post('/home', userController.verifyLogin)
 user_route.get('/', userController.loadHome);
 
@@ -27,7 +27,7 @@ user_route.get('/productdetails', ProductController.productDetails)
 // cart
 user_route.post('/add-item-to-cart', auth.checkSession, CartController.addToCart)
 user_route.get('/remove/:productId', auth.checkSession, CartController.removeCart)
-user_route.get('/cart', auth.checkSession, CartController.shopCart)
+user_route.get('/cart', auth.checkSession, CartController.shopCart)  
 user_route.post('/updatedcart', auth.checkSession, CartController.updateCart)
 user_route.get('/checkout', auth.checkSession, CartController.checkout)
 user_route.get('/checkbalance', auth.checkSession, CartController.checkBalance)

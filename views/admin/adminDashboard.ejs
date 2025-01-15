@@ -15,7 +15,7 @@
                                     class="text-primary material-icons md-monetization_on"></i></span>
                             <div class="text">
                                 <h6 class="mb-1 card-title">Revenue</h6>
-                                <span>₹<%= orders.totalPriceSum %></span>
+                                <span>₹<%= orders?.totalPriceSum %></span>
                                 <!-- <span class="text-sm">
                             </span> -->
                             </div>
@@ -58,7 +58,7 @@
                             <div class="text">
                                 <h6 class="mb-1 card-title">Online Earning</h6>
                                 <span class="text-sm">
-                                    from <%= onlinePay.count %> orders
+                                    from <%= onlinePay?.count %> orders
                                 </span>
                             </div>
                         </article>
@@ -122,41 +122,41 @@
                                         <th scope="col">Date</th>
                                     </tr>
                                 </thead>
-                                <% order.forEach((order)=>{ %>
+                                <% order?.forEach((order)=>{ %>
                                     <tr>
                                         <td>
-                                            <%= order._id %>
+                                            <%= order?._id %>
                                         </td>
                                         <td><b>
-                                                <%= order.username %>
+                                                <%= order?.username %>
                                             </b></td>
-                                        <td>₹<%= order.totalprice %>
+                                        <td>₹<%= order?.totalprice %>
                                         </td>
                                         <td>
                                             <% if (order.orderStatus==='Pending' ) { %>
                                                 <div class="badge rounded-pill alert-primary">
-                                                    <%= order.orderStatus %>
+                                                    <%= order?.orderStatus %>
                                                 </div>
-                                                <% } else if (order.orderStatus==='Cancelled' ) { %>
+                                                <% } else if (order?.orderStatus==='Cancelled' ) { %>
                                                     <div class="badge rounded-pill alert-info">
-                                                        <%= order.orderStatus %>
+                                                        <%= order?.orderStatus %>
                                                     </div>
-                                                    <% } else if (order.orderStatus==='Placed' ) { %>
+                                                    <% } else if (order?.orderStatus==='Placed' ) { %>
                                                         <div class="badge rounded-pill alert-warning">
-                                                            <%= order.orderStatus %>
+                                                            <%= order?.orderStatus %>
                                                         </div>
-                                                        <% } else if (order.orderStatus==='Delivered' ) { %>
+                                                        <% } else if (order?.orderStatus==='Delivered' ) { %>
                                                             <div class="badge rounded-pill alert-success">
-                                                                <%= order.orderStatus %>
+                                                                <%= order?.orderStatus %>
                                                             </div>
                                                             <% } else { %>
                                                                 <div class="badge rounded-pill alert-danger">
-                                                                    <%= order.orderStatus %>
+                                                                    <%= order?.orderStatus %>
                                                                 </div>
                                                                 <% } %>
                                         </td>
                                         <td>
-                                            <%= order.orderDate.toISOString().slice(0, 10) %>
+                                            <%= order?.orderDate.toISOString().slice(0, 10) %>
                                         </td>
                                     </tr>
                                     <% }) %>

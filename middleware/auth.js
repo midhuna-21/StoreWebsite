@@ -23,7 +23,7 @@ module.exports = {
             console.log("user active");
             next();
         } else {
-            res.redirect("/userlogin");
+            res.redirect("/login");
         }
     },
     adminlogin: async (req, res, next) => {

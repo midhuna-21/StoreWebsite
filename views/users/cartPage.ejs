@@ -1,139 +1,89 @@
-<%- include('../layouts/partials/header.ejs') %>
-	<style>
-		.footer-divider {
-			width: 100%;
-			/* Increase the width to 95% */
-			height: 0.5px;
-			background-color: #c6bdbd;
-			margin: 20px auto;
-			/* Center the divider horizontally */
-			margin-top: 50px;
-		}
-	</style>
-	<!-- Shoping Cart -->
-	<% let totalPriceSum=0 %>
-		<div>
-			<form class="bg0" style="padding: 37px;">
-				<% if (cart.products.length==0) { %>
-					<div class="container txt-center mt-5 mb-5 p-5">
-						<div class="row">
-							<h3>Your Cart is Empty!</h3>
-							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-								<div class="m-l-25 m-r--38 m-lr-0-xl">
-									<% } else { %>
-										<div class="wrap-table-shopping-cart">
-											<table class="table table-bordered">
-												<thead class="thead-dark">
-													<tr>
-														<th scope="col">Product</th>
-														<th scope="col">Product Name</th>
-														<th scope="col">Price</th>
-														<th scope="col">Quantity</th>
-														<th scope="col">Total</th>
-														<th scope="col">Actions</th>
-													</tr>
-												</thead>
-												<tbody>
-													<% cart.products.forEach(product=> { %>
-														<% let totalPrice=product.productDetails.productprice *
-															product.quantity; %>
-															<% totalPriceSum +=totalPrice %>
-																<tr class="incrementdecrement"
-																	data-id="<%= product.product._id %>">
-																	<td class="column-1">
-																		<img src="uploadProduct/<%= product.productDetails.image[0] %>"
-																			alt="<%= product.productDetails.productname %>"
-																			class="product-image">
-																	</td>
-																	<td class="column-2">
-																		<%= product.productDetails.productname %>
-																	</td>
-																	<td class="column-3 price">₹<%=
-																			product.productDetails.productprice.toFixed(2)
-																			%>
-																	</td>
-																	<td class="column-4">
-																		<div
-																			class="wrap-num-product flex-w m-l-auto m-r-0">
-																			<div
-																				class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-																				<i class="fs-16 zmdi zmdi-minus dec-btn"
-																					data-id="<%= product.product._id %>"></i>
-																			</div>
-																			<input
-																				class="mtext-104 cl3 txt-center num-product inputQuantity"
-																				type="number" name="num-product1"
-																				value="<%= product.quantity %>"
-																				data-price="<%= product.productDetails.productprice.toFixed(2) %>"
-																				data-total="<%= totalPrice.toFixed(2) %>"
-																				placeholder="Quantity" title="Quantity">
-																			<div
-																				class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-																				<i class="fs-16 zmdi zmdi-plus inc-btn"
-																					data-id="<%= product.product._id %>"></i>
-																			</div>
-																		</div>
-																		<input type="hidden" class="max-quantity"
-																			value="<%= product.productDetails.quantity %>">
+<%- include('../layouts/header.ejs') %>
+	
+<% let totalPriceSum=0 %>
+<div class="container mx-auto p-6">
+    <form class="p-8">
+        <% if (cart.products.length==0) { %>
+            <div class="text-center mt-20 mb-20">
+                <h3 class="text-2xl font-semibold text-gray-800">Your Cart is Empty!</h3>
+                <p class="text-lg text-gray-600 mt-4">Start shopping and make your home beautiful with our amazing products.</p>
+            </div>
+        <% } else { %>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-gray-50">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-6 text-left text-sm font-semibold text-gray-600">Product</th>
+                            <th class="py-3 px-6 text-left text-sm font-semibold text-gray-600">Product Name</th>
+                            <th class="py-3 px-6 text-left text-sm font-semibold text-gray-600">Price</th>
+                            <th class="py-3 px-6 text-left text-sm font-semibold text-gray-600">Quantity</th>
+                            <th class="py-3 px-6 text-left text-sm font-semibold text-gray-600">Total</th>
+                            <th class="py-3 px-6 text-left text-sm font-semibold text-gray-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cart.products.forEach(product => { %>
+                            <% let totalPrice = product.productDetails.productprice * product.quantity; %>
+                            <% totalPriceSum += totalPrice %>
+                            <tr class="border-t border-b">
+                                <td class="py-4 px-6">
+                                    <img src="uploadProduct/<%= product.productDetails.image[0] %>"
+                                         alt="<%= product.productDetails.productname %>"
+                                         class="w-16 h-16 object-cover rounded-md">
+                                </td>
+                                <td class="py-4 px-6 text-gray-700">
+                                    <%= product.productDetails.productname %>
+                                </td>
+                                <td class="py-4 px-6 text-gray-600">
+                                    ₹<%= product.productDetails.productprice.toFixed(2) %>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <button class="btn-num-product-down cl8 hover:bg-gray-200 rounded-full p-1">
+                                            <i class="fs-16 zmdi zmdi-minus text-gray-600"></i>
+                                        </button>
+                                        <input class="mtext-104 cl3 txt-center num-product w-16" type="number" name="num-product1"
+                                               value="<%= product.quantity %>" data-price="<%= product.productDetails.productprice.toFixed(2) %>"
+                                               data-total="<%= totalPrice.toFixed(2) %>" placeholder="Quantity" title="Quantity">
+                                        <button class="btn-num-product-up cl8 hover:bg-gray-200 rounded-full p-1">
+                                            <i class="fs-16 zmdi zmdi-plus text-gray-600"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 text-gray-700">
+                                    ₹<%= totalPrice.toFixed(2) %>
+                                </td>
+                                <td class="py-4 px-6">
+                                    <a href="/remove/<%= product.product._id %>"
+                                       class="text-red-500 hover:text-red-700 text-sm font-semibold">
+                                        Remove
+                                    </a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
 
-																	</td>
-																	<td class="column-5 total-price">₹<%=
-																			totalPrice.toFixed(2) %>
-																	</td>
-																	<td class="column-6">
-																		<div class="flex-w">
-																			<button class="btn btn-danger remove-item">
-																				<a href="/remove/<%= product.product._id %>"
-																					style="text-decoration: none; color: inherit;">Remove</a>
-																			</button>
-																		</div>
-																	</td>
-																</tr>
-																<% }); %>
-												</tbody>
-											</table>
-										</div>
-								</div>
-							</div>
-						</div>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 ">
-									<div class="border rounded p-4 mb-4">
-										<h4 class="text-center mb-4">Cart Totals</h4>
+            <!-- Cart Totals Section (Right-Aligned and Smaller) -->
+            <div class="mt-6 bg-gray-100 p-4 rounded-lg sm:w-72 w-full ml-auto">
+                <h4 class="text-lg font-semibold text-gray-700 text-center mb-4">Cart Totals</h4>
+                <div class="flex justify-between items-center text-gray-700 mb-3">
+                    <span>Total:</span>
+                    <span class="font-bold text-lg">₹<%= totalPriceSum.toFixed(2) %></span>
+                </div>
 
-										<div class="d-flex justify-content-between align-items-center mb-3">
-											<span class="text-secondary">Total:</span>
-											<span class="total-price font-weight-bold total-price-sum"> ₹<%=
-													totalPriceSum.toFixed(2) %> </span>
+                <div class="flex justify-center mt-6">
+                    <a href="/checkout"
+                       class="bg-black text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-gray-800 transition duration-200">
+                        Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+        <% } %>
+    </form>
+</div>
 
-										</div>
-
-										<div class="d-flex justify-content-between align-items-center mb-3">
-											<!-- <span class="text-secondary">Discount:</span>
-									<span class="font-weight-bold">₹0.0</span> -->
-										</div>
-
-
-										<!-- Proceed to Checkout Button -->
-										<div class="text-center">
-											<a href="/checkout" class="btn btn-dark btn-lg btn-block mt-3"
-												style="text-decoration: none;">
-												Proceed to Checkout
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<% } %>
-						<!-- <div id="proceedToCheckout"></div> -->
-			</form>
-		</div>
-
-		<%- include('../layouts/partials/footer.ejs') %>
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<script>

@@ -12,51 +12,56 @@
     <section 
     class="min-h-screen flex items-center justify-center" 
     style="background-image: url('images/singup.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-    
+  
+    <!-- Heading -->
+    <h1 class="text-4xl font-bold text-gray-600 absolute top-20">Admin</h1>
+  
     <div id="toast-container" class="fixed bottom-0 right-0 p-4 space-y-2 text-red-500"></div>
     
-   
-    <div class=" p-8 w-full max-w-md">
+    <div class="p-8 w-full max-w-md bg-white rounded-lg shadow-lg opacity-90">
         <form action="/admin/login" id="loginForm">
-                <div class="card-body">
-                        <div class="mb-6">
-                              <div class="relative">
-                                  <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
-                                      <i class="fas fa-envelope"></i>
-                                  </span>
-                                  <input
-                                      type="email"
-                                      name="email"
-                                      placeholder="email"
-                                      class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none"
-                                  />
-                              </div>
-                          </div>
-      
-                          <!-- Password Field -->
-                          <div class="mb-6">
-                              <div class="relative">
-                                  <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
-                                      <i class="fas fa-lock"></i>
-                                  </span>
-                                  <input
-                                      type="password"
-                                      name="password"
-                                      placeholder="password"
-                                      class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focuse:ring-1 focus:ring-gray-400 focus:outline-none"
-                                      autocomplete="new-password"
-                                  />
-                              </div>
-                          </div>
-
-                    <!-- Submit Button -->
-                    <div class="mb-6">
-                        <button type="button" onclick="submitForm()"  class="w-full py-3 bg-blue-700 text-white font-medium rounded-full shadow-lg hover:bg-blue-800 focus:outline-none"> Sign in </button>
+            <div class="card-body">
+                <div class="mb-6">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="email"
+                            class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none"
+                        />
                     </div>
                 </div>
-            </form>
-        </div>
-    </section>
+
+                <!-- Password Field -->
+                <div class="mb-6">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            class="pl-10 w-full p-3 border border-gray-300 rounded-full text-gray-700 shadow-md focus:ring-1 focus:ring-gray-400 focus:outline-none"
+                            autocomplete="new-password"
+                        />
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-6">
+                    <button type="button" onclick="submitForm()" class="w-full py-3 bg-blue-700 text-white font-medium rounded-full shadow-lg hover:bg-blue-800 focus:outline-none">
+                        Sign in
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
 
     <!--script-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

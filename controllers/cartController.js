@@ -259,7 +259,12 @@ const addAddressToCheckout = async (req, res) => {
 
         const addedAddress = user.address[user.address.length - 1];
 
-        res.json({ success: true, ret });
+        if(req.query.ret=="checkout"){
+            res.redirect('/checkout')
+        }else{
+            res.redirect('/showAddress')
+        }
+        // res.json({ success: true, ret });
     } catch (error) {
         console.log(error.message)
         res.status(500).json({ error: 'Internal server error' });

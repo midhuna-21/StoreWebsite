@@ -23,7 +23,7 @@ const securePassword = async (password) => {
 const loadLogin = async (req, res) => {
     try {
         const messages = [];
-        res.render("users/userlogin", { messages });
+        res.render("users/userLogin", { messages });
     } catch (error) {
         console.log(error.message);
     }
@@ -541,12 +541,11 @@ const showWalletHistory = async (req, res) => {
         const transactions = wallet
             ? wallet.transactions.slice(startIndex, endIndex)
             : [];
-        console.log(transactions.length)
-        console.log('transaction.items')
+
         res.render("users/walletHistory", {
             wallet,
             transactions,
-            currentPage: page,
+            currentPage: page, 
             totalPages,
         });
     } catch (error) {

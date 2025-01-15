@@ -519,21 +519,21 @@ const getDashboard = async (req, res) => {
     const codPay = await calculateCodOrderCountAndTotal()
     const latestorders = await getLatestOrders()
 
-       console.log(ordersData,"get dashBorde rsData")
-     console.log(orders,"get dashBordorders")
-       console.log(categorySales,"get dashBorders categorySales")
-       console.log(salesData,"get dashBorders  salesData")
-       console.log(salesCount,"get dashBordersData salesCount")
-       console.log(categoryCount ,"get dashBorders categoryCount ")
-       console.log(productsCount,"get dashBorders productsCount")
-       console.log(onlinePay,"get dashBord onlinePay")
-       console.log(codPay,"get dashBord codPay")
-       console.log(latestorders,"get dashBord latestorders")
-       console.log("productsCount:", productsCount);
-       console.log("categoryCount:", categoryCount);
-      console.log("onlinePay.totalPriceSum:", onlinePay[0].totalPriceSum);
-      console.log("onlinePay.count:", onlinePay[0].count);
-    console.log('uasername', latestorders)
+    //    console.log(ordersData,"get dashBorde rsData")
+    //  console.log(orders,"get dashBordorders")
+    //    console.log(categorySales,"get dashBorders categorySales")
+    //    console.log(salesData,"get dashBorders  salesData")
+    //    console.log(salesCount,"get dashBordersData salesCount")
+    //    console.log(categoryCount ,"get dashBorders categoryCount ")
+    //    console.log(productsCount,"get dashBorders productsCount")
+    //    console.log(onlinePay,"get dashBord onlinePay")
+    //    console.log(codPay,"get dashBord codPay")
+    //    console.log(latestorders,"get dashBord latestorders")
+    //    console.log("productsCount:", productsCount);
+    //    console.log("categoryCount:", categoryCount);
+    //   console.log("onlinePay.totalPriceSum:", onlinePay[0]?.totalPriceSum);
+    //   console.log("onlinePay.count:", onlinePay[0]?.count);
+    // console.log('uasername', latestorders)
 
     res.render('admin/adminDashboard', {
       orders, productsCount, categoryCount,
