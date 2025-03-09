@@ -54,6 +54,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
 });
 
-app.listen(7000, () => {
+app.listen(6000, () => {
     console.log("server started.");
 });
