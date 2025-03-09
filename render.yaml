@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: store-website
-    runtime: node
-    env: node
-    buildCommand: npm install
-    startCommand: npm start
-    plan: free
-    nodeVersion: 18
